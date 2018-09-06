@@ -1,0 +1,13 @@
+Fragmented-too many teams
+releases too large
+stakeholders on each team largly focussed on tasks that benefit them most
+
+devops: combined view development release and operations processes
+* produces many tools for this mindset
+* select appropriate tools for the devops process
+
+Develop a release pipeline capable of ci\cd of software releases
+* integration
+* build system
+* CI service
+*

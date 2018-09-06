@@ -1,0 +1,16 @@
+= Comp 360
+
+* *FAST* an algorithm runs in polynomial time if for some _d_, for every
+input instance of size r it runs in O(n~d~) time
+
+== Linear Programming
+
+* Reducing from other problems to linear problems
+* Integer Linear Program = Linear Program + all variables integers
+
+=== The Diet Problem
+
+* six variables, # of servings of each food, x1, ..., x6
+* minimize price: 3x1 + 24x2 + 13x3 + 9x4 + 20x5 + 19x6
+* >= 2000 c, >= 55g protein, >= 800mg calcium
+* x1, ..., x6 >= 0
