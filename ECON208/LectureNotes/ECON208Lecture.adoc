@@ -1,0 +1,115 @@
+= ECON 208
+
+== Chapter 1
+
+=== What is Economics
+
+* Economics is the study of the use of scarce resources to satisfy unlimited
+human wants
+
+* Resources: land, labour, resource
+** referred to as factors of production
+** Outputs: goods, or services
+
+==== Scarcity and Choice
+
+* Scarcity indicates having to make a choice
+* For every choice made there is an opportunity cost (whatre you giving up to
+produce these resources)
+* *Opportunity Cost* the value of the next best alternative that is forgone
+when one alternative is chosen
+
+//TODO: add  graph pizza/beer opportunity cost graph
+
+* Production Possibility Boundary (PPB)
+** Illustrates
+*** Scarcity
+*** Choice
+*** Opportunity Cost
+
+** Items on boundary are most efficient, using all resources possible
+
+//TODO: add PPB graph
+
+* Opportunity cost for activity includes three things:
+1. The direct cost of activity, plus
+2. Whatever you give up in order to do the activity, minus
+3. Whatever savings the activity generates
+
+==== Four Key Economic Problems
+
+1. What is produces and how?
+* *Resource allocation* determines the quantities of various goods that are
+produced
+
+2. What is consumed and by whom?
+
+4. Is productive capacity growing?
+
+//TODO: the effect of economic growth on PPB
+
+==== Economics and Government
+
+* Can tax
+* Alter allocation of resources
+* Improve distribution of consumption
+* Can affect the overall output and income
+
+=== The Complexity of Modern Economics
+
+==== Nature of the Economy
+
+* *Many transactions* leads to a *complex* system that is *self-organized*
+* Self organizing: individual consumers and producers seek to maximize
+their own satisfaction which leads to the overall state of the economy
+* Incentives and self-interest:
+** everyone is selfish
+** individuals respond to incentive
+
+* Efficiency: will we produce the goods and services people want using the
+least possible resources
+
+=== The Decision Makers and Their Choices
+
+* Consumers: maximizes satisfaction/utility with budget constraint
+* Producers: maximized profits
+* Government
+
+//TODO: the circular flow of income and expenditure figure
+
+=== Production and Trade
+
+* displays two characteristics
+** specialization of labour
+** division of labour
+
+* specialization: allocation of jobs to different people
+** Advantageous because
+*** individual abilities differ - comparative advantage
+
+* Division of labour: the breaking up of a production process into a series of
+specific tasks
+
+== Economic Theories, Data, and Graphs
+
+=== Positive and Normative Statements
+
+* *Normative Statement* depend on value judgements and opinions - cannot
+be settled by resource facts
+* *Positive Statements* do not involve value judgements, they are statements
+about what is, was, or will be
+
+=== Building and Testing Economic Theories
+
+* Theories
+** Variables
+*** Endogenous
+*** Exogenous
+
+** Assumptions
+*** motives
+*** Causation
+*** Applicability
+*** Unrealistic
+
+** Predictions
