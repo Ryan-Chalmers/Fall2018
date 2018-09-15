@@ -113,3 +113,43 @@ about what is, was, or will be
 *** Unrealistic
 
 ** Predictions
+
+=== Graphing Economic Theories
+
+image::images/2018/09/income-and-consumption.png[income and consumption]
+
+== Demand Supply and Price
+
+=== Demand
+
+* Quantity demanded: the total amount consumers desire to purchase at in some
+period
+* _ceteris paribus_: the price of a product and the quantity demanded are
+negatively related
+
+image::images/2018/09/demandcurve.png[demand curve]
+
+* A change in variables other than price will shift the demand curve
+  - average household income
+  - prices of other products
+
+- Shifts in the Demand curve
+  - rightward: increase in demand
+  - leftward: decrease in demand
+
+- A *change in demand* is a change in the quantitiy demanded at every price
+shift the entire curve
+- A *change in quantity demanded* refers to a movement from one point on a
+demand curve to another point
+
+image::images/2018/09/increase-of-demand.png[increase of demand]
+
+=== Supply
+
+* Quantity supply: the amount of product that a firm desires to sell in some
+time period
+* Shifts in supply curve:
+  - increase price of inputs
+  - technology government taxes and subsidies
+- A *change in supply* is a shift of the entire curve
+- A *change in quantity supplied*: same as demand
