@@ -234,4 +234,121 @@ image::images/ECSE429LectureNotes-b7b3f.png[align=center]
 ** Black-box (functional)
 ** White-box: aim to derive tests based on systems internal structure
 
-=== Oracles and Test Coverage
+==== Oracles and Test Coverage
+
+==== Regression Testing
+
+* Different *scopes*
+** Local: direct testing of the code changed or added
+** Surrounding: testing of function supported or directly impacted by the change
+** Confidence: predefined suite of tests routinely run after any change is
+made to product/system
+
+==== Maintenance Testing
+
+* Goal:
+** Carried after system is in production
+** Evaluate success + ensure lack of side effects
+
+* Triggers for Maintenance
+** Modification
+** Migration
+** Retirement
+
+* Impact analysis for maintenance
+** Evaluate the planned/execute changes
+
+=== Test Activities and Processes
+
+==== Test Planning
+
+* Define objectives
+* Define approach on how to meet test objectives within constraints
+
+==== Test Monitoring and Control
+
+* Compare actual progress against the test plan using monitoring metrics
+* Evaluate exit criteria (check test results against coverage criterial)
+
+==== Test Analysis
+
+* BDD
+* Determines what to test in terms of measurable coverage criteria
+** Identify testable features
+** Define and prioritize associated test conditions
+** Capture traceability
+
+* Analyze test basis to identify testable features
+
+==== Test Design
+
+* Elaborate test condition s into high-level test cases
+* Design and prioritize test cases
+* Identify necessary data to support test conditions and cases
+* Design test environment and identify required infrastructure and tools
+* Capture traceability between test basis, test conditions, test cases, and
+test procedures
+
+==== Test Implementation
+
+* Do we now have everything in place to run the tests?
+* Create test software for test execution
+* Preparing test data and load into test environment
+* Verify and update traceability between the test basis, test conditions,
+test cases, test procedures, and test suites
+
+==== Test Execution
+
+* Run test suites in accordance with test execution schedule
+** Execute
+** Compare results
+** Analyze anomalies
+** Report defects based on the observed failures
+** Log
+** Verify and update traceability
+
+==== Test Completion
+
+* Collect data from completed test activities to consolidate experience
+* Occurs at project milestones
+** Check if all defect reports are closed
+** Create a test summary report
+** Analyze lessons learned
+
+==== Importance of Traceability
+
+* Bidirectional traceability between test basis and test work product
+** Analyze the impact of changes
+** Auditing and certification
+** Improve understandabilty of various test reports
+
+==== Test Driven Development
+
+* Listen->Test->Code->Design
+* Listen to customers while gathering requirements, develop test cases, code
+the program, (re-)design / refactor / clean up as more code is added to the
+system
+
+=== Test Automation
+
+image::images/ECSE429LectureNotes-05076.png[align=center]
+
+=== In Class Quiz
+
+1. Valid objective for testing? find as many failures as possible so that defects
+can be identified and corrected
+2. Difference between testing and debugging? testing shows failures caused by
+defects; debugging finds, analyzes, and removes the cause of failures in the
+software
+3. Failure in testing or production? product crashed when the user selected
+and option in a dialog box
+4. Which is a key principle of software testing? it is impossible to test
+all input and precondition combinations of a system
+5. In what way can testing be a part of Quality Assurance? It reduces the level
+of risk to the quality of the system
+6. Which of the following is performed during the test analysis activity?
+evaluating test basis for testability
+7. How can white-box testing be applied during acceptance testing? To check if
+all work process flows have been covered
+
+== Static Validation and Verification Techniques

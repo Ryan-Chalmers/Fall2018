@@ -122,10 +122,10 @@ image::images/2018/09/income-and-consumption.png[income and consumption]
 
 === Demand
 
-* Quantity demanded: the total amount consumers desire to purchase at in some
+* Quantity demanded: the total amount consumers desire to purchase in some time
 period
 * _ceteris paribus_: the price of a product and the quantity demanded are
-negatively related
+*negatively* related
 
 image::images/2018/09/demandcurve.png[demand curve]
 
@@ -137,7 +137,7 @@ image::images/2018/09/demandcurve.png[demand curve]
   - rightward: increase in demand
   - leftward: decrease in demand
 
-- A *change in demand* is a change in the quantitiy demanded at every price
+- A *change in demand* is a change in the quantity demanded at every price
 shift the entire curve
 - A *change in quantity demanded* refers to a movement from one point on a
 demand curve to another point
@@ -148,8 +148,202 @@ image::images/2018/09/increase-of-demand.png[increase of demand]
 
 * Quantity supply: the amount of product that a firm desires to sell in some
 time period
+* _ceteris paribus_: the price of a product and the quantity demanded are
+*positively* related
 * Shifts in supply curve:
   - increase price of inputs
   - technology government taxes and subsidies
+* Quantity supplied it the amount that firms are willing to offer for sale and
+not necessarily the quantity sold
 - A *change in supply* is a shift of the entire curve
-- A *change in quantity supplied*: same as demand
+- A *change in quantity supplied*: refers to a movement from one point on a
+supply curve to another point
+
+image::images/ECON208Lecture-66915.png[align=center]
+
+=== The Determination of Price
+
+* *Market* a market may be defined as any situation in which buyers and sellers
+negotiate the transaction of some goods and services
+* *Perfectly competitive market* buyers and sellers are price takers
+
+==== Changes in Market Prices
+
+* Four "laws" of supply and demand
+1. An increase in demand causes an increase in both equilibrium price and
+equilibrium quantity
+2. A decrease in demand demand causes a decrease in both equilibrium price and
+equilibrium quantity
+
+.Shifts in the demand curve
+image::images/ECON208Lecture-66915.png[align=center]
+
+3. An increase in supply causes a decrease in the equilibrium price and in
+increase in the equilibrium quantity
+4. A decrease in supply causes an increase in the equilibrium price and a
+decrease in the equilibrium quantity
+
+.Shifts in the supply curve
+image::images/ECON208Lecture-2bded.png[align=center]
+
+=== Relative Prices and Inflation
+
+* The *absolute price* of a product is the amount of money that must be spent
+to acquire one unit of that price
+* A *relative price* is the price of one good in terms of another
+* Demand and supply curves are drawn in terms of relative prices rather than
+absolute prices
+
+== Elasticity
+
+=== Price Elasticity of Demand
+
+* Demand is *elastic* when quantity demanded is very responsive to change
+in the products own price (*inelastic* is opposite)
+* Related to the slope of the demand curve but not the same
+
+.Elastic demand
+image::images/ECON208Lecture-7a8e3.png[align=center]
+
+.inelastic demand
+image::images/ECON208Lecture-92ebe.png[align=center]
+
+* *Note* we can only do visual comparison if: both the curves are drawn on the
+same scale
+* We start from the same price-quantity equilibrium
+
+==== The Measurement of Price Elasticity
+
+* Elasticity is defined as
+image::images/ECON208Lecture-e3de9.png[align=center]
+
+* Demand elasticity is *negative*, but economists usually use the
+*absolute value*
+* Elasticity measures the change in p and Q relative to some base values of
+p and Q
+
+.Example: from point 0 to 1
+image::images/ECON208Lecture-18dc3.png[align=center]
+
+.Elasticity along a linear demand curve
+image::images/ECON208Lecture-f468b.png[align=center]
+
+.Demand Curves with constant elasticity
+image::images/ECON208Lecture-0d509.png[align=center]
+
+* D~1~ is perfectly inelastic
+* D~2~ is perfectly elastic at p~0~
+* D~3~ is unit elastic: a given % increase in p induces an equal % decrease
+in q at all points on the curve
+
+==== What Determines Elasticity of Demand
+
+* Demand elasticity tends to be high when there are many *close substitutes*
+* The availability of substitutes is determined by:
+** the length of the time interval considered
+** whether the good is a necessity or a luxury
+** how specifically the product is defined
+
+==== Total Expenditure
+
+* The change in total expenditure depends on the relative changes in price and
+quantity: +
+_Total Expenditure = Price X Quantity_
+* Elasticity > 1: TE increase when price falls
+* Elasticity < 1: TE decreases when price falls
+* Demand is *elastic*, TE increases when price falls
+* Demand is *inelastic*, TE decreases when price falls
+* TE reaches maximum when demand is *unit elastic*
+
+=== Price Elasticity of Supply
+
+* Price elasticity of supply measures the responsiveness of the quantity
+supplied to a change in the products own price
+* it is denoted as _n_~s~ and is defined as:
+
+image::images/ECON208Lecture-8ff68.png[align=center]
+
+==== Determinants of Supply Elasticity
+
+* The elasticity of supply depends on how easily firms can increase
+output in response to an increase in the product's price
+* Depends on:
+** The technical ease of substitution
+** The nature of production costs
+** The time span under consideration
+
+* Are resource inputs really available
+* Are factors mobile, ie can workers move when needed
+* Can finished products be easily stored
+* etc...
+
+image::images/ECON208Lecture-1027d.png[align=center]
+
+==== Important Example of Where Elasticity Matters
+
+* *Exice Tax*: A tax on the sale of a particular commodity
+* *Tax Incidence* Who bears the burden of the tax?
+
+.The effect of a cigarette exice tax
+image::images/ECON208Lecture-79e2a.png[align=center]
+
+.The effect of a cigarette on exice tax 2.0
+image::images/ECON208Lecture-2eeef.png[align=center]
+
+* The burden of an exice tax is independent of who actually remits the tax to
+the government - it depends only on relative *elasticities* of demand and
+supply
+* More inelastic is demand, more burden for consumers
+
+=== Other Demand Elasticities
+
+==== Income Elasticity of Demand
+
+image::images/ECON208Lecture-3ee63.png[align=center]
+
+===== Luxuries Versus Necessities
+
+* The more necessary an item is in the consumption pattern of consumers, the
+lower its income elasticity
+* Income elasticities for any one product also vary with the level of a
+consumer's income
+* The distinction between luxuries and necessities also helps to explain
+differences in income elasticities between countries
+
+==== Cross Elasticity of Demand
+
+image::images/ECON208Lecture-26485.png[align=center]
+
+== Price Controls and Market Efficiency
+
+=== Government-Controlled Prices
+
+* Situations in which the government may think about changing equilibrium
+prices
+
+=== Disequilibrium Prices
+
+* If price is set above equilibrium, some sellers will be unable to find buyers
+* Conversely, if price is set below equilibrium, some buyers will be unable to
+find sellers
+* With administered prices, the quantity is determined by the *lesser* of
+quantity demanded and supplied
+
+.The determination of quantity exchanged in disequilibrium
+image::images/ECON208Lecture-c2051.png[align=center]
+
+=== Price Floors
+
+.A binding price floor
+image::images/ECON208Lecture-c2051.png[align=center]
+
+* Price floors make it illegal to sell the product below the controlled price
+* Price floors lead to excess supply
+
+=== Price Ceilings
+
+.A price ceiling and Black-Market pricing
+image::images/ECON208Lecture-20e1f.png[align=center]
+
+* A price ceiling is the maximum price at which a product may be exchanged
+* Price ceilings lead to excess demand

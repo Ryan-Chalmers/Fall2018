@@ -1,9 +1,78 @@
 = Comp 360
 
+== Algorithm Design and Analysis
+
+* Completeness and NP-Completeness: how do we tell if a problem is hard or easy
+ie whether or not there is some fast algorithm for it
+* Linear Programming
+* How to Handle hard problems
+* Two Important Algorithms: Jpeg compression and Google Pagerank
+
+=== NP-Completeness
+
+==== Fast vs Slow
+
 * *FAST* an algorithm runs in polynomial time if for some _d_, for every
 input instance of size r it runs in O(n~d~) time
+* Note whether we say that the size of an input integer _s_ is s or log s,
+makes a difference if algorithms are fast or slow
 
-== Linear Programming
+==== Hard vs Easy
+
+* A problem is easy if it is fast ie. polynomial time, algorithm solves it
+* If a problem is not easy it is hard
+
+=== Decision Problems
+
+* A problem where the output is yes or no
+* Many problems have a corresponding decision problem such that either both are
+hard or both are easy
+
+==== Certificates
+
+* A decision problem is yes-certifiable if for every instance for which the
+answer is yes, we can associate a certificate such that there is an algorithm
+which given the certificate can determine if the answer is yes in polynomial
+time
+* A decision problem is no-certifiable if for every instance for which the
+answer is no, we can associate a certificate such that there is an algorithm
+which given the certificate can determine if the answer is yes in polynomial
+time
+
+==== Possibly Easy Problem
+
+* If a decision problem is easy then it must be both yes-certifiable and
+no-certifiable
+** because we can just ignore the certificate and use the fast
+algorithm which solves it
+
+=== Using Reductions to Quickly Solve Problems
+
+* A reduction algorithm from decision problem π to π' takes input π and yields
+π' with the same answer
+* If there is a fast reduction from π to π' and a fast algorithm for π' then
+there is a fast algorithm for π
+* Implies if there is a fast reduction from π to π' and no fast algorithm
+for π then there is no fast algorithm for π'
+* We can use reduction from hard problem to π', to show π' is hard
+
+=== Linear Programming
+
+* Minimizing or maximizing a linear function subject to a finite number of
+linear constraints
+* Standard Form
+** Maximize: +
+_∑^n^~j=1~c~j~x~j~_
+** Subject to: +
+_∑^n^~j=1~a~ij~x~j~ <= b~i~ (i=1,2,3...,m)_ +
+_x~j~ >= 0 (j=1,2,3,...,n)_
+
+* Objective Function: the linear function that is to be minimized or maximized
+in an LP
+* Optimal solution: the feasible solution that maximizes the objective function
+
+==
+
 
 * Reducing from other problems to linear problems
 * Integer Linear Program = Linear Program + all variables integers

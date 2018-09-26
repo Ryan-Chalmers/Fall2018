@@ -1,0 +1,34 @@
+= Jigsaw Read 2.0
+
+* Build System: outlines how software is assembled from sources
+* Build process: act of assembling a software system 4 steps
+1. configuration, build tools are selected
+2. construction, compiler and other commands that produce deliverables are executed
+3. certification, automatically executing tests
+4. packaging, step
+
+
+== Low-level
+
+* define build dependencies between input and output, as well as commands
+that implement the input output transformation
+* *Make*: automatically synchronized program sources and deliverables
+** Specifications outline target-dependency-recipe tuples
+** Targets specify files created by a recipe ie shell script that is executed
+when target
+1. does not exist
+2. is older than one or more of its dependencies
+
+* *phony targets* represent abstract phases of the build process rather than
+concrete files
+* *Ant*: Borrows the tuple concept from make, however all Ant targets are
+abstract
+** When ant target is triggered, a list of specified tasks are invoked that
+execute in Java
+
+* Rake, Jam, and SCons also use tuples, but allow maintainers to write
+
+== Questions
+
+1. what is a phony target/example?
+2. what are the four steps of a build system

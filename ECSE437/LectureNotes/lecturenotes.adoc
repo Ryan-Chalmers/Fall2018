@@ -1,0 +1,56 @@
+= ECSE 437
+
+== Build Systems
+
+=== Low Level Build Systems
+
+==== Make
+
+1. Expressing Dependencies
+** Program
+*** random.o , input.o, main.o
+**** random.c, input.c main.c
+
+2. Writing Recipes
+----
+program : random.o input.o main.o
+  gcc -o program random.o input.o main.o
+
+random.o : random.c
+  gcc -c random.c
+
+my_command="gcc -c input.c"
+input.o : input.c
+  $(my_command)
+
+main.o : main.c ; gcc -c main.c
+
+.PHONY: clean
+clean:
+  rm -f random.o input.o main.o program
+----
+
+* Equivalent to above *Good to know, Midterm*
+----
+program: random.o input.o main.o
+  gcc -c $@ $^
+%.o
+  gcc -c $<
+
+.PHONY: clean
+clean:
+  rm -f random.o input.o main.o program
+----
+
+//TODO: add flowchart from lecture notes
+
+==== CMake
+
+* Exercise Using CMAKE from lecture: *Lab Tutorial*
+
+==== Framework Driven Build System
+
+* Q1 Java version 1.7
+* Q2 20-27? test?
+* Q3 Select plugin versions for the build phases of maven, avoid using defaults
+* Q4 src

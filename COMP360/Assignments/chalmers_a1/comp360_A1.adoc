@@ -1,0 +1,60 @@
+= Comp 360 A1
+Ryan Chalmers
+
+== Problem
+
+A steel factory produces both raw steel and refined products. The refined
+products the factory produces include staples, nails, and screws. Each day the
+factory must guarantee a production of at least 80 staples, 25 nails, and 20
+screws. In addition to this the factory produces each of its refined products
+in three grades; poor, average, and premium.
+
+[width="80%",cols="4*^",options="header"]
+|=============================
+|Product |Grade |Cost |Value
+|Staple |Poor |10 |15
+|Staple |Average |15 |25
+|Staple |Premium | 25 |40
+|Nail |Poor |15 |20
+|Nail |Average |25 |40
+|Nail |Premium |30 |50
+|Screw |Poor |70 |80
+|Screw |Average |100 |110
+|Screw |Premium |115 |130
+|=============================
+
+The factory is willing to use 1000 worth of their raw steel in order to create
+their premium products. Additionally, The company is running a promotion at
+this time and with every 10 average items sold, 1 free premium item will be
+given to the costumer. How much of each product must be sold to maximize the
+companies revenue?
+
+== Solution
+
+=== Variables
+
+* Staple-poor = x~1~
+* Staple-average = x~2~
+* Staple-premium = x~3~
+* Nail-poor = x~4~
+* Nail-average = x~5~
+* Nail-premium = x~6~
+* Screw-poor = x~7~
+* Screw-average = x~8~
+* Screw-premium = x~9~
+
+=== Objective
+
+Maximize: +
+15x~1~ + 25x~2~ + 40x~3~ + 20x~4~ + 40x~5~ + 50x~6~ + 80x~7~ + 110x~8~ + 130x~9~
+
+=== Subject To
+
+10x~1~ + 15x~2~ + 25x~3~ + 15~4~ + 25x~5~ + 30x~6~ + 70x~7~ + 100x~8~ + 115x~9~ ≤ 1000, +
+x~1~ + x~2~ + x~3~ ≥ 80, +
+x~4~ + x~5~ + x~6~ ≥ 25, +
+x~7~ + x~8~ + x~9~ ≥ 20, +
+x~1~ + x~2~ + x~3~ + x~4~ + x~5~ + x~6~ + x~7~ + x~8~ + x~9~ ≥ 0, +
+-10x~2~ + x~3~ ≥ 0, +
+-10x~5~ + x~6~ ≥ 0, +
+-10x~8~ + x~9~ ≥ 0, +

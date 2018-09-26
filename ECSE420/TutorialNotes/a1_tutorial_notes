@@ -1,0 +1,7 @@
+= A1 Tutorial Notes
+
+== Showing Deadlock
+
+|Thread 1 |Thread 2
+|lock1.lock() |lock2.lock()
+|lock2.lock() |lock1.lock()
