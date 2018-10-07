@@ -1,6 +1,6 @@
 = ECON 208
 
-== Chapter 1
+== 1.
 
 === What is Economics
 
@@ -90,7 +90,7 @@ least possible resources
 * Division of labour: the breaking up of a production process into a series of
 specific tasks
 
-== Economic Theories, Data, and Graphs
+== 2. Economic Theories, Data, and Graphs
 
 === Positive and Normative Statements
 
@@ -118,7 +118,7 @@ about what is, was, or will be
 
 image::images/2018/09/income-and-consumption.png[income and consumption]
 
-== Demand Supply and Price
+== 3. Demand Supply and Price
 
 === Demand
 
@@ -194,7 +194,7 @@ to acquire one unit of that price
 * Demand and supply curves are drawn in terms of relative prices rather than
 absolute prices
 
-== Elasticity
+== 4. Elasticity
 
 === Price Elasticity of Demand
 
@@ -215,6 +215,7 @@ same scale
 ==== The Measurement of Price Elasticity
 
 * Elasticity is defined as
+
 image::images/ECON208Lecture-e3de9.png[align=center]
 
 * Demand elasticity is *negative*, but economists usually use the
@@ -249,10 +250,8 @@ in q at all points on the curve
 * The change in total expenditure depends on the relative changes in price and
 quantity: +
 _Total Expenditure = Price X Quantity_
-* Elasticity > 1: TE increase when price falls
-* Elasticity < 1: TE decreases when price falls
-* Demand is *elastic*, TE increases when price falls
-* Demand is *inelastic*, TE decreases when price falls
+* Elasticity > 1: Changes in price cause TE to change in opposite direction
+* Elasticity < 1: Changes in price cause TE to change in the same direction
 * TE reaches maximum when demand is *unit elastic*
 
 === Price Elasticity of Supply
@@ -314,14 +313,11 @@ differences in income elasticities between countries
 
 image::images/ECON208Lecture-26485.png[align=center]
 
-== Price Controls and Market Efficiency
+== 5. Price Controls and Market Efficiency
 
 === Government-Controlled Prices
 
-* Situations in which the government may think about changing equilibrium
-prices
-
-=== Disequilibrium Prices
+==== Disequilibrium Prices
 
 * If price is set above equilibrium, some sellers will be unable to find buyers
 * Conversely, if price is set below equilibrium, some buyers will be unable to
@@ -332,7 +328,7 @@ quantity demanded and supplied
 .The determination of quantity exchanged in disequilibrium
 image::images/ECON208Lecture-c2051.png[align=center]
 
-=== Price Floors
+==== Price Floors
 
 .A binding price floor
 image::images/ECON208Lecture-c2051.png[align=center]
@@ -340,10 +336,42 @@ image::images/ECON208Lecture-c2051.png[align=center]
 * Price floors make it illegal to sell the product below the controlled price
 * Price floors lead to excess supply
 
-=== Price Ceilings
+==== Price Ceilings
 
 .A price ceiling and Black-Market pricing
 image::images/ECON208Lecture-20e1f.png[align=center]
 
 * A price ceiling is the maximum price at which a product may be exchanged
 * Price ceilings lead to excess demand
+
+=== Rent Controls: A case study of Price Ceilings
+
+* The predicted effects of rent controls
+** Binding rent controls are a specific form of price ceiling
+
+.Short-run and long-run effects of rent controls
+image::images/ECON208Lecture-ecb12.png[align=center]
+
+* Existing tenants in rent-controlled apartments win
+* Landlords lose
+* Potential future tenants also suffer
+
+==== Policy Alternatives
+
+* Housing shortages can be reduced if the government (at taxpayers' expense)
+either subsidizes housing production or produces public housing directly
+* The government may also provide lower-income households with income assistance
+* But no policy is "free" every policy involves resources cost
+
+=== An Introduction to Market Efficiency
+
+* Legislated minimum wages make firms and some workers worse off, but benefit
+those workers who retain their jobs
+* Rent controls make some tenants better off at the expense of landlords
+* *Market Efficiency* How does this effect society overall?
+
+==== Demand as Value and Supply as Cost
+
+* Price corresponding to a specific quantity demanded is the highest price
+consumers are willing to pay
+** As shown by the height of the demand curce

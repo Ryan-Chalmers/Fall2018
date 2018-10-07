@@ -1,0 +1,20 @@
+/*********************************************
+ * OPL 12.8.0.0 Data
+ * Author: ryanchalmers
+ * Creation Date: Sep 17, 2018 at 7:00:50 PM
+ *********************************************/
+
+ Products = {
+ 	"poorStaple", "averageStaple", "premiumStaple"
+ 	"poorNail", "averageNail", "premiumNail",
+ 	"poorScrew", "averageScrew", "premiumScrew"};
+ 
+Product=[<10,15>, <15,25>, <25,40>
+		 <15,20>, <25,40>, <40,50>
+		 <70,80>, <100,110>, <115,130>];
+		
+minStaples = 80;
+minNails = 25;
+minScrews = 20;
+
+maxCost = 4500;
