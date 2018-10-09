@@ -1,8 +1,0 @@
-= Build Technology Paradigms
-
-* Build System: refers to specification that outline how a software system is
-assembled from its sources
-* Build process: act of assembling a software system, typically split into four
-steps
-1. Configuration Step: set of user-selected build tools and features are selected
-2. 

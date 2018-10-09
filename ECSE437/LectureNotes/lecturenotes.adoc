@@ -1,6 +1,203 @@
 = ECSE 437
 
+== Overview
+
+=== Reading: Modern Release Engineering in a Nutshell
+
+* 6 major phases of a release pipeline
+
+==== Integration Branching and Merging
+
+* Movement of code changes made on development up to master
+* A branch is made as a revision of some parent, has a record of chronicle
+sequence of changes (commits) and is eventually merged back into the parent
+* Quality assurance activities (code reviews) should be down before merge
+* Branch merges can create merge conflicts of different types (text-level,
+build-level, test-level, semantic level)
+* Rules of thumb to mitigate merge conflicts
+** Keep branch merges short-lived and merge often
+** Rebase (synch up) with recent changes of the parent branch
+
+* Trunk Based Development: eliminate branches, everyone works off master, thus
+eliminating the problem of merge conflicts
+* Feature Toggle: Allow the source code of incomplete features to be put inside
+a conditional block that is controlled by means of a variable
+
+==== Continuous Integration: Building and Testing
+
+* CI: refers to the activity of
+** Continuously polling the VCS for new commits and merges
+** Checking these revisions out on dedicated build machines, compiling them
+** Running an initial set of tests to check for regressions
+
+* Allows for fast feedback to developer or team while info is fresh in their
+mind
+* Test stages obtain deliverables built by CI process from "artifact repository"
+which is a file server that cant tag files with metadata
+
+==== Build System
+
+* Set of build specification files used by the CI infrastructure to generate
+project deliverables from source code
+* Consists of two layers
+** Configuration Layer: used to select features to be compiled and included
+in the resulting deliverables
+** Construction: used to specify build tool invocations that generate deliverables
+from source code
+
+* Different type of build systems:
+** File Level: Make
+** Task Based: Ant
+** Lifecycle Based: Maven
+** High level: cmake
+
+==== Infrastructure as Code
+
+* Refers to server, cloud, container or virtual machine on which a new version
+of the system should be deployed for testing or production
+* Used to generate the right environment based on a specification developed
+in a dedicated programming language
+* Virtual machines: self contained systems containing and operating system, and
+library or services required to emulate a server that can run the application
+under development
+* Container: lightweight alternative to a virtual machine
+** Share as many components as possible in the form of images
+** Save disk space and memory
+
+==== Deployment
+
+* Deployment is the phase in which the tested variables for the upcoming
+release are staged in preparation for release
+* Dark Launching: deploying new features without releasing them to the public
+** The system automatically make calls to hidden features in a way invisible
+to end users
+
+* Blue/Green Deployment: deploys the next version on a copy of the production
+environment, updates DNS to redirect traffic to new environment
+* Canary Deployment: release of the software system is loaded to a subset of
+the production environments
+* A/B Testing: deploys alternative A of a feature to the environment of a
+subset of the user base, while alternative B is released to another subset
+** Check which is better
+
+==== Release
+
+* "Rolling Forward": rolling back a release is difficult, instead roll out
+a new release to fix the problem
+
+=== Release Pipelines
+
+1. Integrate: VCS
+2. Build
+* 1. Configuration
+* 2. Construction
+* 3. Certification
+* 4. Packaging
+* 5. Deployment
+
+3. Deploy
+4. Monitor
+
+== Version Control
+
+=== Git: Distributed Version Control System
+
+* Offline Accessibility:
+** Centralized VCS clients need server connections for most operators
+** By contrast most operations can be performed on the DVCS clients without
+using the server
+
+* Branch and Merge operations
+** Branches in CVCSs must be created and merged on the server
+** DVCS clients can create and merge branches as lightweight operations on their
+client machines
+
+==== Rebasing
+
+* Rebase before merging, automatically rewinds your branch changes
+
+image::images/lecturenotes-c5267.png[align=center]
+
+image::images/lecturenotes-2e4e5.png[align=center]
+
+* Reapply the changes to the new head of the target branch
+
+image::images/lecturenotes-645bd.png[align=center]
+
+image::images/lecturenotes-ffea7.png[align=center]
+
+* After rebasing, the merge option is trivial
+
+image::images/lecturenotes-41342.png[align=center]
+
+==== Overview of Git Architecture
+
+* Decentralized by design
+** Each repository can act as a server or a client
+** By convention, a server side only repository is typically a bare repository
+named with the .git extension
+
+* Git can be served over several protocols
+** Local: fasted and most secure
+** Git Protocol: slow and bad
+** HTTPS and SSH: about same speed and security\
+
 == Build Systems
+
+=== Using C
+
+* Have a group of uncompiled c code *.c
+* Then need to compile all the c code: gcc -c *.c
+* Then need to link all the dependencies to make program gcc *.o -o program_name
+* When we fix a bug in one of the source code files the file must be
+rebuilt and then everything thing that depends on it must also be rebuilt
+* Tedious
+
+=== Reading: A Large-Scale Empirical Study of the Relationship between Build Technology and Maintenance
+
+* Build System: refers to specification that outline how a software system is
+assembled from its sources
+* Build Process: the act of assembling a software system, consists of 4 steps
+** Configuration step: a set of build tools and features are selected
+** Construction step: compiler and other commands that produce deliverables are
+executed in an order to satisfy dependencies
+** Certification step: automatically execute tests to ensure that produces
+deliverables have not regressed
+** Packaging step: bundles certified deliverables together with required
+libraries, documentation and data files
+
+==== Low-Level
+
+* Explicitly define build dependencies between input and output files, as well
+as the commands that implement the input-output transformation
+* Make: targets specify build files created by a recipe, i.e. a shell script
+that is executed when target either does not exist or is older than one
+of its dependencies
+* Phony Target: represents abstract phases of a build process rather than
+concrete files in a filesystem
+
+==== Abstraction Based
+
+* Maintainers have to constantly repeat low-level expressions to account for
+variability in platform, abstraction fixes this
+* Automatically generate low-level specifications based on higher level
+abstractions
+
+==== Framework driven
+
+* Framework-driven technologies favor build convention over configuration
+* Maven
+
+==== Dependency Management
+
+* Augment build systems by managing external dependencies, making sure the local
+cache contains all APIs necessary to build the project
+* Offer two advantages
+1. users no longer need to carefully install required versions of libraries
+manually
+2. production and development environments can coexist, since the potentially
+unstable versions of libraries that are required for development are placed
+in the local cache that is quarantined from the running system
 
 === Low Level Build Systems
 
@@ -42,15 +239,295 @@ clean:
   rm -f random.o input.o main.o program
 ----
 
-//TODO: add flowchart from lecture notes
+===== How does make work?
 
-==== CMake
+image::images/lecturenotes-dee63.png[align=center]
 
+image::images/lecturenotes-166a8.png[align=center]
+
+image::images/lecturenotes-c7fca.png[align=center]
+
+===== Shortcomings with low-level build tools like make
+
+* Platform specific scripts: not portable, repeated lines
+* Recursion based build design is harmful
+** to handle dependencies across directories, recursive calls to make are used,
+this fractures the global dependency graph
+
+=== Abstraction Based Build Systems
+
+* Addresses shortcomings of low-level specs
+
+* GNU Autotools
+** Expands macros to generate platform specific Makefiles and production code
+
+CMake:
+* A toolchain that again expands higher level abstractions to generate lower
+level build specs
+* Generates Makefiles, MVS and xcode files
 * Exercise Using CMAKE from lecture: *Lab Tutorial*
 
-==== Framework Driven Build System
 
-* Q1 Java version 1.7
-* Q2 20-27? test?
-* Q3 Select plugin versions for the build phases of maven, avoid using defaults
-* Q4 src
+=== Framework Driven Build System
+
+==== Maven
+
+* Maven Build Process
+** Maven assumes that a build job follows a lifecycle
+** A lifecycle is a sequential series of phases
+** A phase performs a series of goals that are bound via plugins
+
+* Maven build lifecycles
+** Default: produces the project deliverables
+** Clean: undoes build commands to return the project to its initial state
+** Site: generates the project website materials
+
+image::images/lecturenotes-fb9af.png[align=center]
+
+===== Goal Binding for Maven Lifecycles
+
+* Phase to goal bindings
+** What is performed during a phase depends on the goals that are bound to it,
+and the plugins that are associated with those goals
+** A phase with no goals or plugins is a noop
+
+* The bindings depend on the deliverable
+** The deliverable is what maven is tasked with producing
+** The goals that are bound to lifecycle phases by default depend on the
+deliverable that we are trying to produce
+
+=== Dependency Management Tools
+
+* Internal dependencies become easier to track
+* Projects are becoming more and more connected
+* Maven manages repositories of dependencies on your machine
+* Maven Central: an online resource where packages are published and made
+available to Maven users
+
+==== Maven as an External Dependency tool
+
+* Dependency resolution:
+** Dependencies are expressed in the pom.xml file
+** If an appropriate version of a dependency is not available in your local repo,
+it is downloaded from maven central
+
+* Dependency Scope:
+** Dependencies can be bound to specific phases, scoping their impact down to
+those users who run those phases
+
+== Routine Builds and Continuous Integration
+
+=== Build system Interactions
+
+==== Developers
+
+* Developers execute personal builds on their development machines to:
+** Synch their changes into deliverables so that they can perform basic tests
+** Ensure that their changes have not introduced build problems
+
+==== Quality Assurance
+
+* QA teams hook automated tests into the build system
+* Since normal builds should proved quick feedback only quick tests are run
+by defaults
+* Slower test can be relegated to special build targets
+
+==== Release Engineers
+
+* Release engineers are concerned with micro and macro aspects of build systems
+** Micro-build: concerns about the behavior of a build system within a single
+execution
+** Macro-build: concerns about how to best provision a fleet of build resources
+
+==== Static Analysis
+
+* Static analysis tools listen to commands that are executed by the build system
+* Use executed commands to put together a graph of how source code files are
+connected
+* Scan the graph for common bugs like resource leaks and dead code
+
+==== Code Review Environments
+
+* Teams that use modern code review tools like Gerrit connect build hobs to
+the code reviewing dashboards
+
+==== Nightly Builds
+
+* At night, a build is executed to produce deliverables that include the changes
+of the prior day
+* QA teams can pick up those deliverables in the morning to test the new feature
+and verify bug fixes
+* Issues:
+** As the amount of change per day has grown, nightly builds have become
+difficult
+** If there is build commits on the build then it is hard to tell which commit
+caused the break
+
+* Solution: run frequent smaller builds
+
+=== Continuous Builds
+
+.Continuous Integration Feedback loop
+image::images/lecturenotes-17154.png[align=center]
+
+* Each push gets its own build job
+* CI simplifies problem assignment: problems correspond to a logical set of
+changes made by one developer
+* CI simplifies problem analysis: reports errors quickly
+
+=== Reading: Modern CI Process
+
+==== Build Triggering Events
+
+* Cycle begins with build triggering event
+* Builds are triggered:
+** During development
+** When the code is submitted for review
+** The change is integrated into the project VCS
+
+==== Build Job Creation Service
+
+* When a build triggering event occurs, a build job creations node will add
+a job to the queue of pending build jobs
+
+==== Build Job Processing Service
+
+* build jobs in the pending queue will be allocated to a build job processing
+node
+* The job processing node will first download the latest version of the source
+code and apply the change under consideration
+* Next the job processing node will initiate the build process, which will
+compile the system if necessary, execute a system of automated tests, and make
+the system available for users
+
+==== Build Job Reporting Service
+
+* build jobs results in the reporting queue will be communicated to the
+development team
+* Reporting preferences can be configured such that particular receipts receive
+notifications when builds are successful
+
+=== Keeping Build Systems Robust
+
+* Build systems need maintenance
+** As source code changes, occasionally the build system will need to be updated
+** Neglected build maintenance makes the build process produce incorrect
+results
+
+=== Test Flakiness
+
+* Flaky Tests: a test with non-deterministic behavior
+* False positives: test code has a failed test when the code is actually fine
+* False negatives: test passes when it should have failed
+
+image::images/lecturenotes-17154.png[align=center]
+
+== Code Inspections and Code Review
+
+* Use knowledge of the system, its domain and the technologies used to discover
+problems
+
+=== Software inspections and Review: Advantages over dynamic V&V
+
+* Cascading errors can obfuscate test results: Once an error occurs, later
+errors may be new, or are the cascading effect of prior error
+* Incomplete versions can be inspected: tests require an executable version of
+the system, while inspections do not
+* Good inspections are more than "Bug Hunts"
+** Inspection uncover inefficiencies and style issues
+** Inspection are a form of knowledge sharing and collaborative problem solving
+
+=== Structured Inspections
+
+* Rigid heavyweight process
+* Involve in-person meetings, review checklists
+
+* Roles
+** Moderator
+** Scribe
+** Reviewer
+** Reader
+** Producer
+
+.Structured Inspection
+image::images/lecturenotes-a91a3.png[align=center]
+
+=== Tips for a Productive Code Review
+
+[options="header"]
+|==================
+|Do: | Dont:
+| Critique the artifact | Attack the person
+| Keep review chunks short and succinct | submit fixes for multiple issues at the same time
+| Plan time for review | skip reviews
+| Prioritize review of important issues | FIFO queue reviews
+| Keep things light | Use sarcasm or exaggerations
+|==================
+
+=== Code Review Manifesto
+
+We are uncovering better ways of critiquing code by doing it and helping others
+to do it. Trough this work we have come to value +
+Constructive Feedback _over_ Ad hominem attacks +
+Clearly articulated rationale _over_ strongly worded opinion +
+Suggested means for improvement _over_ only focussing on the criticism +
+
+=== Modern Reviews
+
+==== Reading: Why do programmers do code reviews?
+
+===== Finding Defects
+
+The top listed reason for doing code reviews. Both low-level (correct logic is
+  in place) and high-level (catch errors in design).
+
+===== Code Improvement
+
+Comments or changes in the code in terms of reliability, commenting, consistency,
+dead code removal , etc but do not involve correctness or defects.
+
+===== Alternative Solutions
+
+Regard changes and comments on improving submitted code by adopting an idea
+that leads to a better implementation.
+
+===== Knowledge Transfer
+
+One of the main purposes for a code review is distribution of knowledge, if you
+did not learn anything from a code review then it wasn't a very good review.
+
+===== Team Awareness and Transparency
+
+Code reviews act as a signaling mechanism to notify other devs that there are
+changes being made in the the code base and that if they would like, they can
+observe these changes.
+
+===== Share code ownership
+
+Breaks the idea that each person owns their code and instead code was writte
+so the team can progress as a whole.
+
+==== Roles
+
+* Author
+* Reviewer
+* Integrator
+* Verifier
+
+==== Gerrit
+
+image::images/lecturenotes-4ebb1.png[align=center]
+
+== Midterm Questions
+
+* Describe a file based build system (ie. Make)
+* What is a container and what are its benefits over a VM?
+* What is trunk-based development and how does it reduce the burden of branches
+merges and conflicts
+* what is a phony target/example?
+* what are the four steps of a build system
+* Why do companies prefer rolling forward over rollbacks
+* Give 1 advantage and 1 disadvantage of GitFlow over trunk-based development
+* What is trunk based development and how does it reduce the burden of branches
+merges and conflicts
+* What is a container and what are its benefits over a virtual machine
