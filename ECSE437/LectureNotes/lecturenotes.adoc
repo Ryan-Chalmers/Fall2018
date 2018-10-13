@@ -261,11 +261,11 @@ this fractures the global dependency graph
 * GNU Autotools
 ** Expands macros to generate platform specific Makefiles and production code
 
-CMake:
-* A toolchain that again expands higher level abstractions to generate lower
+* CMake:
+** A toolchain that again expands higher level abstractions to generate lower
 level build specs
-* Generates Makefiles, MVS and xcode files
-* Exercise Using CMAKE from lecture: *Lab Tutorial*
+** Generates Makefiles, MVS and xcode files
+** Exercise Using CMAKE from lecture: *Lab Tutorial*
 
 
 === Framework Driven Build System

@@ -319,11 +319,16 @@ image::images/ECON208Lecture-26485.png[align=center]
 
 ==== Disequilibrium Prices
 
+* At any disequilibrium price, quantity exchanged is determined by the lesser
+of quantity demanded or quantity supplied
+
 * If price is set above equilibrium, some sellers will be unable to find buyers
 * Conversely, if price is set below equilibrium, some buyers will be unable to
 find sellers
 * With administered prices, the quantity is determined by the *lesser* of
 quantity demanded and supplied
+* *Partial Equilibrium* is the analysis of a single market in which the feedback
+effects from the market are ignored
 
 .The determination of quantity exchanged in disequilibrium
 image::images/ECON208Lecture-c2051.png[align=center]
@@ -343,6 +348,10 @@ image::images/ECON208Lecture-20e1f.png[align=center]
 
 * A price ceiling is the maximum price at which a product may be exchanged
 * Price ceilings lead to excess demand
+* Reasons for excess demand:
+** Restrict production
+** Keep specific prices down
+** satisfy (normative) notions of quantity
 
 === Rent Controls: A case study of Price Ceilings
 
@@ -374,4 +383,61 @@ those workers who retain their jobs
 
 * Price corresponding to a specific quantity demanded is the highest price
 consumers are willing to pay
-** As shown by the height of the demand curce
+** As shown by the height of the demand curve
+
+* Price corresponding to a specific quantity supplied is the lowest price
+producers are willing to accept
+** As show by the height of the supply curve
+
+==== Reinterpreting the Demand Curve
+
+image::images/ECON208Lecture-877b2.png[align=center]
+
+* For each pizza the price on the demand curve shows the value consumers
+receive from consuming that pizza
+
+==== Reinterpreting the Supply Curve
+
+* For each pizza, the price on the supply curve shows the additional costs to
+firms of producing that pizza
+
+==== Economic Surplus
+
+* *Economic Surplus*: for any given quantity the area below the demand curve and
+above the supply curve shows the economic surplus associated with the prodution
+and consumption of that good
+** Represents the net value that society as a whole earns by producing and
+consuming that good
+
+.Economic surplus in the pizza market
+image::images/ECON208Lecture-8501f.png[align=center]
+
+.Economic surplus in the pizza market 2
+image::images/ECON208Lecture-ae06e.png[align=center]
+
+==== Economic Surplus and Market Efficiency
+
+image::images/ECON208Lecture-ef633.png[align=center]
+
+==== Market Inefficiency with Price Controls
+
+.Price floor
+image::images/ECON208Lecture-e450e.png[align=center]
+
+* Change in CS=-(B + D)
+* Change in PS=B-E
+* Change in Total Surplus = -(D + E)
+
+.price ceiling
+image::images/ECON208Lecture-1c204.png[]
+
+* Change in CS=C-D
+* Change in PS=-(C-E)
+* Change in Total surplus = - (D+E)
+
+.output quotas
+image::images/ECON208Lecture-8c00d.png[]
+
+* Change in CS = - (B+D)
+* Change in PS = B - E
+* Change in total surplus = - (D + E)

@@ -20,7 +20,7 @@ to user
 
 * Root cause of defect: earliest action/condition that contributed to creating
 defect
-* Root Cause Analysis: Identify root cause to reduce occurence of similar
+* Root Cause Analysis: Identify root cause to reduce occurrence of similar
 defects in the future
 * Effects of a defect: observed by user/customer, product owner
 
@@ -352,3 +352,367 @@ evaluating test basis for testability
 all work process flows have been covered
 
 == Static Validation and Verification Techniques
+
+== White Box Testing
+
+=== What is White Box Testing
+
+* Focus on system's internal logic
+* Based on a system's *source code* as opposed to its specific implementation
+* The notion of coverage can also be applied to structural (white-box) testing
+* Advantages: Test what is actually there (source code)
+* Disadvantages:
+** May miss functionality in specification that was not implemented
+** Can be cumbersome
+
+* *Control Flow*-oriented approaches: based on the analysis of how control flows
+through a program
+* *Data flow*-oriented approaches: based on the analysis of how data through the
+program
+* *Mutation* testing: helps develop effective tests
+
+=== Control Flow Analysis
+
+image::images/ECSE429LectureNotes-58458.png[align=center]
+
+* Directed graph
+** Nodes are blocks of sequential statements
+** Edges are transfers of control
+
+* Edges may be labeled with predicate representing the condition of control
+transfer
+* Intermediate statements in a sequence of statements are not shown
+** As long as there is not more thank one exiting edge and one entering edge
+
+==== Example Control Flow
+
+image::images/ECSE429LectureNotes-c7018.png[align=center]
+
+==== Control Flow Basics
+
+image::images/ECSE429LectureNotes-0421a.png[align=center]
+
+* From source code to control flow graph--issue about branching
+* In a control flow graph, nodes correspond to branching (if, while, ...) should
+not contain any assignment
+
+===== Example
+
+....
+if (i++==1) {
+  j := ...
+}
+....
+
+image::images/ECSE429LectureNotes-3ba97.png[align=center, scaledwidth=80%]
+
+==== Statement/Node Coverage
+
+* All instructions Executed
+* Faults cannot be discovered if the parts containing them are not executed
+* Equivalent to covering all nodes in control flow graph
+* Executing a statement is a weak guarantee of correctness, but easy to achieve
+* In general, several inputs execute the same statements
+
+===== Example
+
+image::images/ECSE429LectureNotes-bb9ee.png[align=center]
+
+==== Branch/Edge Coverage
+
+* Use the program structure i.e. control flow graph
+* Every decision branch is executed (sometimes called *decision coverage*)
+* *Each edge* of control flow graph is traversed at least once
+* Exercise all conditions that govern control flow programs at least once with
+true and once with false
+* Minimum coverage - IEEE unit test standard
+
+===== Example
+
+image::images/ECSE429LectureNotes-142a1.png[align=center]
+
+==== Condition/Decision Coverage
+
+* Each condition constituent evaluated true at least once and to false at least
+once
+* *Combines* criteria for condition and branch coverage
+
+image::images/ECSE429LectureNotes-d15ba.png[align=center]
+
+image::images/ECSE429LectureNotes-4f8c8.png[align=center]
+
+==== Multiple Condition Coverage
+
+* All Combinations of condition constituents in decisions
+
+image::images/ECSE429LectureNotes-e790c.png[align=center]
+
+image::images/ECSE429LectureNotes-8606a.png[align=center]
+
+image::images/ECSE429LectureNotes-71006.png[align=center]
+
+==== Modified Condition/Decision Coverage
+
+* Full MC/DC coverage achieved if:
+** Each entry and exit point invoked
+** Each decision takes every possible outcome
+** Each condition in a decision takes every possible outcome (true/false)
+
+* Consequences:
+** There exists a pair of test cases where only the one condition changes and
+the outcome changes too
+** Requires n+1 test cases for one decision with n conditions
+
+===== Example
+
+* Assume four test cases with values for conditions A, B, and C as well as the
+corresponding result
+* Pair 1+3: only A changes its value and result changes too
+* Pair 1+2 shows independence of B
+* Pair 1+4 shows independence of C
+* 4 test cases needed for modified condition/decision coverage for three
+conditions
+
+image::images/ECSE429LectureNotes-cc1bb.png[align=center]
+
+==== Path Coverage
+
+* Test case for each possible path
+* In practice, however, the number of paths is too large if not infinite
+* Some paths are infeasible
+* It is key to determine "critical paths"
+
+===== Example
+
+image::images/ECSE429LectureNotes-28137.png[align=center]
+
+* T1 = {<x=0, z=1>, <x=1, z=3} (executes all edges but does not show risk of
+division by zero)
+* T2 = {<x=0, z=3>, <x=1, z=1>} (would find the problem by exercising the
+remaining possible flows of control through the program)
+* T1UT2 -> all paths covered
+
+image::images/ECSE429LectureNotes-ca771.png[align=center]
+
+==== Loop Coverage
+
+* Minimal Coverage should when possible, execute the loop body:
+** Zero times
+** once
+** Twice or more
+
+* Single loop -> more extensive coverage, set loop control variable:
+** Minimum -1, minimum, minmum +1
+** Typical
+** Maximum -1, maximum, maximum + 1
+
+* Nested Loop:
+** Start at innermost loop -> proceed to outermost
+** For the current focus loop -> Proceed by moving outwards
+*** Set the outer loops to their minimum values
+*** Set all inner loops to their typical values
+*** Test cases for a single focus loop
+*** Move up one level in nested loop
+
+==== White-Box Testing Process
+
+. Set Coverage goal
+. Derive control flow graph (CFG) from source code
+. Determine paths to obtain coverage goal
+. For each path
+.. Sensitize path for input values
+.. Use specification (or oracle) for expected output
+.. Watch for infeasible paths
+. Run test cases
+. Check Coverage
+
+==== Path Instrumentation
+
+* To measure code coverage:
+
+image::images/ECSE429LectureNotes-9ecb7.png[align=center]
+
+* Approaches:
+** Link markers, link counters, symbolic debugger, code coverage tool
+
+==== Path Sensitization
+
+* To find a set of inputs to force a selected path:
+** Backward strategy (from exit to entry)
+** Forward strategy (from entry to exit)
+
+* Problem with infeasible paths (may call for rewriting of program)
+** Not all statements are usually reachable in real world programs
+** It is not always possible to decide automatically if a statement is reachable
+and the percentage of reachable statements
+* When one does not reach 100% coverage it is difficult to determine the reason
+
+==== Path Condition
+
+* Conjunction of branch predicates required to hold for all the branches along
+a path
+* Used to find:
+** Values for a path (sensitizing)
+** Infeasible paths
+
+* Determined using symbolic evaluation
+** Variables take symbolic values (e.g. x~0~, x~1~, ... , )
+
+===== Symbolic Values
+
+WARNING: Do lecture exercises
+
+
+=== Data Flow Analysis
+
+* CFG paths that are significant for the data flow in the program
+* Focusses on the assignment of values to variables and their uses i.e. where
+data is defined and used
+* Analyze occurrences of variable
+* *Definition of Occurrence* value is bound to variable
+* *Use Occurrence* value of variable is referred
+** Predicate use: variable used to decide whether predicate is true
+** Computational: use compute a value for defining other variable or output value
+
+==== Definitions and Uses
+
+* A program written in a programming language such as C and Java contains variables
+* Variables are defined by assigning values to them and are used in expressions
+
+===== Pointers
+
+* Consider the following sequence of statements that use pointers: +
+----
+z = &x; //defines a pointer variable z but does not use x
+y = z+1; //defines y and uses z
+*z = 25; //defines x accessed through the pointer variable z
+y = *z + 1; //defines y and uses x accessed through pointer variable z
+----
+
+===== Arrays
+
+* Arrays are also tricky - consider the following declaration and two statements
+in C: +
+----
+int A[0];
+A[i] = x + y
+----
+
+* First statement defines variable A
+* Second statement defines A and uses i, x and y
+* Alternate view for second statement: defines A[i] not the entire array
+
+==== c-use
+
+* Uses of a variable that occur within an expression as a part of an assignment
+statement, in an output statement, as a parameter within a function call, and in
+subscript expressions, are classified as c-use, where the "c" in c-use stands
+for computational
+* In general, a definition of A[E] is interpreted as a c-use of variables in E
+followed by a def of A
+* In general, a reference to A[E] is interpreted as a use of variables in E
+followed by a use of A
+
+NOTE: c-use example question on slide 44
+
+==== p-use
+
+* The occurrence of a variable in an expression used as a condition in a branch
+statement such as an if and while, is considered as a p-use, where the "p" in
+p-use stands for a predicate
+
+NOTE: p-use example question on slide 45
+
+==== Basics of Data Flow Analysis
+
+* Variable definition
+** d(v,n): value is assigned to v at node n (e.g. LHS of assignment, input statement)
+
+* Variable use
+** c-use(v,n): variable v used in a computation at node (e.g. RHS of assignment,
+argument of procedure call, output statement)
+** p-use(v,m,n): variable v used in predicate from node M to n (e.g as part of
+and expression used for a decision)
+
+* Variable kill:
+** k(v,n): variable v deallocated at node n
+
+
+===== Example
+
+image::images/ECSE429LectureNotes-8175a.png[align=center]
+
+image::images/ECSE429LectureNotes-25ce4.png[align=center]
+
+.Data Flow Actions Checklist: Pairs of Actions
+[%header]
+|================
+| Successive Actions | Result
+| dd | suspicious
+| dk | probably defect
+| du | normal case
+| kd | okay
+| kk | probably defect
+| ku | a defect
+| ud | okay
+| uk | okay
+| uu | okay
+|================
+
+.Data Flow Actions Checklist: First Occurrence
+[%header]
+|=========
+| First Action | Result
+| k | suspicious
+| d | okay
+| u | suspicious
+|=========
+
+.Data Flow Actions Checklist: First Occurrence
+[%header]
+|========
+| Last Action | Result
+| k | okay
+| d | suspicious
+| u | okay
+|========
+
+==== Data Flow Graph
+
+*  A data flow graph of a program captures the flow of definitions and uses
+across basic blocks in a program
+* It is similar to a control flow graph of a program in that the nodes, edges,
+and all paths in control flow graph are preserved in the data flow graph
+* Annotate each node with def and c-use as needed and each edge with p-use as
+needed
+* Label each edge with the condition which when true causes the edge to be taken
+
+image::images/ECSE429LectureNotes-66337.png[align=center]
+
+image::images/ECSE429LectureNotes-a5641.png[align=center]
+
+image::images/ECSE429LectureNotes-6d438.png[align=center]
+
+===== Data Flow Graph: Paths and Pairs
+
+* Complete path: initial node is start node, final node is exit node
+* Simple path: all nodes except possibly first and last node are distinct
+* Loop free path: all nodes are distinct
+* def-clear path with respect to v: any path
+** starting from a node at which variable v is defined and
+** ending at a node at which v is used
+** without redefining v anywhere else along the path
+
+* du-pair with respect to v: (d, u)
+** d ... node where v is defined
+** u ... node where v is used
+** def-clear path with respect to v from d to u
+
+* Definition-use path (du-path) with respect to v: a path P=<n~1~, n~2~, ..., n~j~,
+n~k~> such that d(v, n~1~) and  either one of the following two cases:
+** c-use of v at node n~k~, and P is a def-clear simple path with respect to v
+(i.w. at most a single loop traversal)
+** p-use of v on edge n~j~ to n~k~, and <n~1~,n~2~, ...,n~j~> is def-clear loop-free
+path (i.e. cycle free)
+
+WARNING: A shit load of examples on all this stuff in lectures slide 57-66
