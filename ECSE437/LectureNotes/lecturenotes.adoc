@@ -951,7 +951,7 @@ instances of an operating system
 
 * Which Docker command do we need to use to transform a Dockerfile into its
 image?
-** docker build <image_name>
+** docker build
 
 * Which sub command do we use to view the shared libraries that an executable
 depends on?
@@ -975,4 +975,4 @@ CMD ['jekyll', 'serve']
 ** Daemon communicates with registry to retrieve the jekyll image
 ** Not sure...
 
-* After deploying a web application to an IaaS cloud 
+* After deploying a web application to an IaaS cloud
