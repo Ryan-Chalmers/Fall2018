@@ -7,8 +7,7 @@
 * Economics is the study of the use of scarce resources to satisfy unlimited
 human wants
 
-* Resources: land, labour, resource
-** referred to as factors of production
+* *Factors of Production*: land, labour, resource
 ** Outputs: goods, or services
 
 ==== Scarcity and Choice
@@ -43,7 +42,7 @@ when one alternative is chosen
 produced
 
 2. What is consumed and by whom?
-
+3. Idk
 4. Is productive capacity growing?
 
 //TODO: the effect of economic growth on PPB
@@ -77,7 +76,7 @@ least possible resources
 
 //TODO: the circular flow of income and expenditure figure
 
-=== Production and Trade
+==== Production and Trade
 
 * displays two characteristics
 ** specialization of labour
@@ -90,6 +89,26 @@ least possible resources
 * Division of labour: the breaking up of a production process into a series of
 specific tasks
 
+* *Market Economy* a society in which people specialize in productive activities
+and and meet most of their material wants through voluntary market transactions
+with other people.
+
+
+=== Is There an Alternative to Market Economy
+
+==== Types of Economic Systems
+
+* Traditional: one where behavior is primarily based on tradition, custom, and
+habit
+* Command Economies (Centrally planned Economy): the economic behavior is
+determined by a central authority, usually the government
+* Free-Market Economies: decision about resource allocation are made without
+any central direction, they are a result of innumerable independent decisions
+made by producers and consumers.
+* Mixed Economy: in general all economies are some mix of the the previous 3
+
+
+
 == 2. Economic Theories, Data, and Graphs
 
 === Positive and Normative Statements
@@ -101,18 +120,27 @@ about what is, was, or will be
 
 === Building and Testing Economic Theories
 
-* Theories
-** Variables
-*** Endogenous
-*** Exogenous
+* *Correlation* is a measure of degree of relationship of two variables
+* *Causal Relationship* between two events exists if the occurrence of one event
+causes the other
 
-** Assumptions
-*** motives
-*** Causation
-*** Applicability
-*** Unrealistic
+* *Endogenous* a variable that is explained within a theory
+* *Exogenous* a variable that is determined outside a theory
 
-** Predictions
+=== Economic Data
+
+==== Index Number
+
+* Index Number: a measure of some variable, conventionally expressed relative
+to a base period, which is assigned a value of 100
+* Value of index for any given period
+
+image::images/ECON208Lecture-a5584.png[align=center]
+
+==== Consumer Price Index
+
+* The price index of the average price paid by consumers for a typical basket
+of goods that they buyxf
 
 === Graphing Economic Theories
 
@@ -335,11 +363,17 @@ image::images/ECON208Lecture-c2051.png[align=center]
 
 ==== Price Floors
 
+* *Price floors lead to excess supply Either an unsold surplus will exist, or
+someone must enter the market and buy the surplus.
+
 .A binding price floor
 image::images/ECON208Lecture-c2051.png[align=center]
 
 * Price floors make it illegal to sell the product below the controlled price
-* Price floors lead to excess supply
+* Price floors lead to excess
+
+* *Deadweight loss* caused by the binding price floor and represents the overall
+loss of economic surplus on society
 
 ==== Price Ceilings
 
@@ -347,7 +381,7 @@ image::images/ECON208Lecture-c2051.png[align=center]
 image::images/ECON208Lecture-20e1f.png[align=center]
 
 * A price ceiling is the maximum price at which a product may be exchanged
-* Price ceilings lead to excess demand
+* *Price ceilings lead to excess demand*
 * Reasons for excess demand:
 ** Restrict production
 ** Keep specific prices down
@@ -441,3 +475,345 @@ image::images/ECON208Lecture-8c00d.png[]
 * Change in CS = - (B+D)
 * Change in PS = B - E
 * Change in total surplus = - (D + E)
+
+== 6. Consumer Behavior
+
+=== Marginal Utility and Consumer Choice
+
+* Consumers are motivated to maximize their utility
+* *Utility*: the total satisfaction that they derive from the goods and services
+they consume
+** *Total Utility* the full satisfaction resulting from the consumption of some
+product by a consumer
+** *Marginal Utility* additional satisfaction resulting from consuming one more
+unit of some product
+
+==== Diminishing Marginal Utility
+
+* All things being equal, the utility that any consumer derives from successive
+units of a particular product, is assumed to diminish as total consumption of
+the product increases
+* Marginal utility falls as the level of consumption rises
+* Important assumption to be able to compare total and marginal utility:
+** Individuals know the utility from different actions
+** Individuals can compare the utility from different actions
+
+.Total Utility
+image::images/ECON208Lecture-30132.png[align=center]
+
+.Marginal Utility
+image::images/ECON208Lecture-a428a.png[align=center]
+
+==== Total Utility, Marginal Utility, and Demand Curve
+
+1. Shape of marginal utility = Shape of demand curve
+2. Marginal utility is the slope of the total utility function
+
+==== Market Demand Curve
+
+* Theory of consumer behavior predicts negatively sloped market demand curve
+in addition to a negatively sloped demand curve for the individual
+
+.Market and Individual Demand Curves
+image::images/ECON208Lecture-85d52.png[align=center]
+
+==== Maximizing Utility
+
+* Consumers must decide how to adjust their expenditure to maximize total utility
+* Assume 2 goods (x and y): +
+_max. U = f(x,y)_ +
+_s.t. income = p~x~x+p~y~y_ +
+* A utility maximizing consumer allocates expenditures so that the utility
+obtained from the last dollar spent on each product is equal
+
+image::images/ECON208Lecture-d935c.png[align=center]
+
+===== Example: Burritos and Juice
+
+image::images/ECON208Lecture-8a9ef.png[align=center]
+
+image::images/ECON208Lecture-669f3.png[align=center]
+
+image::images/ECON208Lecture-1caf3.png[align=center]
+
+==== Maximizing Utility
+
+* For two products X and Y, the utility maximizing condition is:
+
+image::images/ECON208Lecture-1f837.png[align=center]
+
+==== The Consumer's Demand Curve
+
+* If the price of juice (X) rises, then at the previous utility-maximizing
+consumption bundle, we have:
+
+image::images/ECON208Lecture-e2484.png[align=center]
+
+* As the consumer reduces consumption of juice, the marginal utility of juice
+rises and this increases the relation on the left-hand side of the equation
+
+=== Income and Substitution Effects of Price Changes
+
+* A change in price has two distinct effects - it alters *relative prices* and
+it changes consumers' *real income*
+
+==== The Substitution Effect
+
+* The substitution effect increases the quantity demanded of a good whose
+(relative) price has fallen and reduces the quantity demanded of a good whose
+(relative) price has increased
+
+==== The Income Effect
+
+* For a *normal good*, the income effect leads consumers to but more of a product
+that has fallen in price
+* For and *inferior good*, the income effect leads consumers to but less of a
+product that has fallen in price
+* The size of the income effect depends on the amount of income spent on the
+good whose price changes and on the amount by which the price changes
+
+==== The Slope of the Demand Curve
+
+* The overall effect of a price change is the *combination* of the income and
+substitution effects
+* For a price increase:
+** The substitution effect is to reduce quantity demanded
+** The income effect could go either way
+
+.Income and Substitution Effects of a Price Change
+image::images/ECON208Lecture-59da2.png[align=center]
+
+
+==== Conspicuous Consumption Goods
+
+* Some products are consumed because the have "snob appeal": the high price
+confers status on its purchaser
+
+=== Consumer Surplus
+
+* Consumer surplus on each unit is the difference between what the consumer is
+willing to pay for that unit, and what they actually pay for that unit
+
+.Consumer Surplus on Milk Consumption
+image::images/ECON208Lecture-4aa64.png[align=center]
+
+* The value placed by a consumer on the total consumption of some product can
+be estimated in two ways
+
+1. The valuations that the consumer places on each unit may be summed
+2. The consumer may be asked how much he or she would be willing to pay to
+consume the *total* amount if the alternative were to consume *more*
+
+* It is important to understand the difference between marginal value and
+total value to the consumer
+
+==== The Paradox of Value
+
+* Water is cheap but "invaluable", whereas diamonds are expensive but mostly
+unnecessary
+* We must distinguish between total value (area under the curve) from marginal
+value (height of the curve)
+
+image::images/ECON208Lecture-9095a.png[align=center]
+
+== Producers in the Short Run
+
+=== What Are Firms?
+
+* Firms come in six basic types
+1. Single proprietorships
+2. Ordinary partnerships
+3. Limited partnerships
+4. Corporations
+5. State-owned corporations
+6. Non-profit organizations
+
+* Some firms are transnational corporations, or often called multinational
+enterprises
+
+==== Financing of Firms
+
+* Firms use financial capital - *equity* and *debt*
+* A firm acquires funds from its owners in return for *stocks*, *shares*, or
+*equity*
+* A firm's creditors are lenders (not owners) - using debt instruments or *bonds*.
+Firms have the obligation to repay the principal and some interest to the lender
+
+==== Goals of Firms
+
+* Economists usually make two key assumptions about firms
+1. Firms are assumed to be profit-maximizers
+2. Each firm is assumed to be a single, consistent decision making unit
+
+=== Production, Costs, and Profits
+
+==== Production
+
+* Firms use four types of inputs for production
+1. Intermediate products
+2. Inputs provided by nature
+3. Inputs provided by people
+4. Inputs provided by the services of physical capital
+
+* Factors of production: *land, labour, capital*
+* The *production function* describes the technological relationship between the
+inputs the firm uses and the output it produces +
+_q = f(L,K)_ +
+* Production is a flow, number of units per period time
+
+==== Costs and Profits
+
+* Profit = Total Revenue - Total Cost
+* Accounting Profits = Total Revenue - Explicit Costs
+* Economic Profits = Total Revenue - (Explicit + Implicit Costs)
+* Implicit costs: *Opportunity cost of the owner's time and capital* in the
+firm's costs +
+Economic Profits < Accounting Profits +
+If economic profit is positive, then the owner's capital is earning more than it
+could in its next best alternative use
+
+==== Profit-Maximizing Output
+
+* A firms economic profit is equal to total revenues minus total (economic)
+costs +
+*π=TR - TC* +
+* What happens to profits as output changes depends on what happens to both
+revenues and costs
+* TR: depends on the type of demand firms' face
+* TC: depends on the time horizons for decision making
+
+==== Time Horizons for Decision Making
+
+* The *short run* is a length of time over which some of the firms factors
+of production are fixed
+** Typically capital is fixed in the short run
+
+* The *long run* is the length of time over which all of the firm's factors of
+production can be varied, but its technology is fixed
+* The *very long run* is the length of time over which all the firm's factors
+of production *and* its technology can be varied
+
+=== Production in the Short Run
+
+==== Total, Average, and Marginal Products
+
+* *Total Product (TP)* is the total amount of output that is produced during
+a given period of time
+* *Average Product (AP)* is the total product divided by the number of units
+of the variable factor used to produce it (usually labour) +
+*AP = TP/L* +
+* The *marginal product (MP)* is the change in total output that results from
+using one more unit of a variable factor
+
+image::images/ECON208Lecture-d7a81.png[align=center]
+
+.Total Product
+image::images/ECON208Lecture-1ffb9.png[align=center]
+
+.Average and Marginal Product
+image::images/ECON208Lecture-a1bec.png[align=center]
+
+* MP is the slope, TP is the curve
+
+==== Diminishing Marginal Product
+
+* The *law of diminishing returns*
+* As workers are added to a production process, each can specialize in one task,
+and the workers' marginal product initially rises
+* But there is a fixed amount of physical capital, eventually the marginal
+product is likely to fail
+
+image::images/ECON208Lecture-259fa.png[align=center]
+
+==== The Average-Marginal Relationship
+
+* If an additional worker's output raises the average product, the *MP* must
+exceed *AP*
+* Similarly, if the marginal worker's output reduces the average product, the
+*MP* must be less than the *AP*
+** the *AP* curve slopes upward as long as the *MP* curve is above it
+
+* The *MP* curve must intersect the *AP* curve at its maximum point
+
+=== Costs in the Short Run
+
+==== Defining Short-Run Costs
+
+image::images/ECON208Lecture-fb9e9.png[align=center]
+
+* *Marginal Cost (MC)* is the increase in total resulting from increasing output
+by one unit
+
+image::images/ECON208Lecture-09a2b.png[align=center]
+
+* Because fixed costs do not vary the output, the only part of *TC* that changes
+is the *variable cost*
+
+==== Why U-Shaped Curve
+
+* *KEY IDEA* each additional worker adds the same amount to total cost but a
+different amount to total output
+* Eventually diminishing *MP* of the variable factor implies eventually
+rising *MC*
+
+NOTE: *MC* reaches its minimum when *MP* reaches its maximum
+
+* Initially each additional worker costs the same but adds more output than the
+previous one
+* Eventually each additional worker costs the same but adds less output than
+the previous one
+
+==== Short-Run Cost Curves
+
+* *MC* is the slop of the *TVS* curve
+* *TFC* do not vary with output, it is horizontal
+* *TC=TVC+TFC*
+
+.Total Cost Curve
+image::images/ECON208Lecture-ba54a.png[align=center]
+
+.Marginal and Average Cost Curve
+image::images/ECON208Lecture-bac39.png[align=center]
+
+* *ATC=AVC+AFC*
+* *AFC* declines steadily as output rides - this is called spreading the overhead
+
+===== The Shape of the ATC Curve
+
+* Failing *AFC* tends to push down *ATC*
+* rising *MC* tends to push up *ATC*
+* at some point the second effect overcome the first effect and *ATC* begins to
+rise
+* *ATC* slopes downward when *MC* is below, slopes upward when *MC* is above
+
+==== Capacity
+
+* The level of output that corresponds to the minimum short-run *ATC* is the
+*capacity* of the firm
+* Capacity is the largest output that can be produced without encountering
+rising average cost per unit
+* A firm that is producing at an output less than the point of minimum *ATC*
+is said to have *excess capacity*
+
+==== Shifts in Short-Run Cost Curves
+
+image::images/ECON208Lecture-0aad4.png[align=center]
+
+* A change in the price of any variable input will shift the *ATC* and *MC* curves
+upward for a price increase and downward for a price decrease
+* There is also a different short-run cost curve given quantity of the fixed factor
+s
+
+== 8. Producers in the Long Run
+
+=== 8.1 The Long Run: No Fixed Factors
+
+* Technical Efficiency: Output/physical amount all inputs
+* Economic Efficiency: Output/value of the inputs
+
+==== Profit Maximization and Cost Minimization
+
+* For any level of output, maximizing profits requires firms to choose their
+inputs to minimize total costs
+* Use K an L to represent capital and labour
+* p~k~ and p~k~ as the prices for the two facotos

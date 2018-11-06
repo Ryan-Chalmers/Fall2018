@@ -531,3 +531,448 @@ merges and conflicts
 * What is trunk based development and how does it reduce the burden of branches
 merges and conflicts
 * What is a container and what are its benefits over a virtual machine
+
+== Cloud-based Deployment
+
+=== What is the Cloud
+
+* Shared pools of configurable computing resources
+* Can be rapidly provisioned (semi-)automatically
+* Can "elastically" scale based on demeand
+
+=== Business Case for Cloud Computing
+
+* For cloud computing: cloud providers automatically scale applications based
+on demand
+
+.Business Case for Cloud Computing
+image::images/lecturenotes-e1fe4.png[align=center]
+
+* Business case against cloud computing: you are using someone else's computer,
+security, privacy and other concerns about IP
+
+=== Infrastructure as a Service (IaaS)
+
+* A service that provides computing resources to users
+* Typically, the computing resources are in the form of virtual machines or
+containers
+
+* Business Models
+** Compute hours/month
+** Per-machine, tshrt sizing
+
+* Examples:
+** Linode
+** Amazon EC2
+** Azure
+** Google Cloud Platform
+** IBM Cloud
+** Digital Ocean
+
+==== IaaS vs In-house Infrastructure
+
+* Pros:
+** Explainable infrastructure operation costs
+** IT support is offloaded to cloud provider
+** Elastic scaling
+
+* Cons:
+** Data privacy and security may be difficult to verify
+** Costs can grow in unexpected ways
+
+NOTE: Here we did the exercise on Amazon EC2
+
+=== Platform as a Service (PaaS)
+
+* A service that provides a development platform to users
+* The platform provides users with a comfortable application development entry
+point
+* Exposes configuration options relevant for devs while hiding irrelevant options
+
+* Business Models
+** Wall clock hours of availability per month
+** Per-machine t-shirt sizing
+
+* Examples
+** Heroku
+** Azure
+** Cloud Foundry
+** IBM Cloud
+** Google Cloud Platform
+
+==== PaaS vs. IaaS
+
+* Pros:
+** Devs can focus on app development instead of infrastructure config
+** Platforms are typically tuned to near-optimal settings for most application
+workloads
+
+* Cons:
+** Convenience at the cost of configurability
+** Platform lock-in: hard to port applications to other platforms
+
+NOTE: Did an exercise in Heroku here
+
+=== Software as a Service (SaaS)
+
+* The entire stack (infrastructure, platform, execution environment) is hosted
+in the cloud and delivered over the web
+* Usually involves a so-called "thin client" that connects to a backend that
+delivers most of the functionality
+
+* Business Models:
+** Public user plans (typically free)
+** Business user plans (monthly rate on usage capactity)
+
+* Examples
+** GSuite (goolge docs etc.)
+
+=== Mobile Backend as a Service (MBaaS)
+
+* Many application backends provide similar features
+** Identity management
+** Notification routing
+** Social media integration
+** Cloud-like storage
+
+* Rather than "reinvent the wheel", providers share these features as APIs
+
+* Business Models:
+** Freemium Models
+** Up to a certain number of active users per month are provided for free
+** More active user is more money
+
+* Examples
+** Backendless
+** Firebase
+
+NOTE: Did an example where we integrate firebase authentication
+
+=== Serverless
+
+* Serverless is a of variant of IaaS where capacity planning decisions are made
+by the provider
+* Costumers are charged for the resources their applications use
+* Elastic scalability at the application level rather than the virtual machine
+level
+
+* Business Models:
+** Similar to IaaS except charges are calculated based on the resouces that
+your application requires
+
+==== Serverless vs. IaaS
+
+* Pros:
+** Users pay for only the compute resources their code consumes
+** Code can be deployed can scaled on a finer granularity
+
+* Cons:
+** A little complex to learn
+** Costs can be a little tough to predict
+
+=== Function as a Service (FaaS)
+
+* Primary means by which serverless computing is realized today
+* Functions are deployed to be executed on demand within a cloud environment
+
+* Business Models:
+** Freemium style
+
+NOTE: complete the AWS lambda tutorial https://is.gd/xyUQEj
+
+== Virtualization
+
+* Virtual Machines
+** Emulate computer system
+** Provide a computer system from within the scope of another system
+
+* Makes entire machines "shippable"
+* Gives shared infrastructure users the impression of having their own machine
+
+=== Different Types of Virtualization
+
+* System virtualization
+** Hosts an entire operating system
+
+* Process Virtualization
+** Provides the isolation of system virtualization while also sharing common
+software tools with the underlying platform
+
+=== History of Virtualization
+
+image::images/lecturenotes-41f24.png[align=center]
+
+==== '60s
+
+* Early server virtualization
+** Goal: run legacy software on newer hardware
+** Result: CP-67 system, first commercial mainframe to support virtualization
+** Pros: isolation
+
+==== '80s and '90s
+
+* chroot
+** Goal: treat a directory within filesystem as another root directory
+** Pros: sharing of system and kernel level features
+
+NOTE: did an exercise where we set up a chroot jail
+
+* Java
+** Goal: compile-once-run anywhere
+** JVM abstracts hardware details
+
+* VMware
+** Workstation: run VMs on UNIX/Linux (Type 2)
+** GSX Server: run VMs on Windows (Type 2)
+** ESX Server: run VMs without host OS (Type 1)
+
+===== Hypervisor Types
+
+* AKA Virtual Machine Monitors (VMMs)
+
+image::images/lecturenotes-dc3d7.png[align=center]
+
+==== '00s and '10as
+
+* Containers:
+** Initial appearance on solaris 10
+** Linux support in 2008 "Zones" allow lightweight isolation with a shared core
+of OS, system, and application software
+** Containers popularized by Docker, which automates deployment
+
+==== Linux Containers and Docker
+
+* Containers:
+** A set of processes, running on top of a common kernel
+** Isolated from the rest
+** Cannot impact each other on the host
+** Achieved through namespaces and cgroups
+
+image::images/lecturenotes-b6606.png[align=center]
+
+=== Docker:
+
+* An orchestration tool for containers with severel features
+** Portability
+** App-centric
+** Builds from "source"
+** Versioning
+** Component reuse
+** Public registry
+** Tool Ecosystem
+
+image::images/lecturenotes-48038.png[align=center]
+
+* Docker provided standardized container format
+* Fixed inefficient use of CPU resources, allowing for isolated services in fewer
+VMs
+
+NOTE: read article describing docker architecture https://is.gd/Dqjy9z
+
+.Docker Overview
+image::images/lecturenotes-1958a.png[align=center]
+
+.Docker Ecosystem
+image::images/lecturenotes-54213.png[align=center]
+
+==== Traditional vs Container-based Development
+
+* Traditional Development
+** Presume we are developing a Python app
+** First, we need a python runtime for your development machine
+** The chouce of python runtime imposes constraints on the runtime that can be
+used in produciton
+
+* Container-based Development
+** Development requirements, execution platform, dependency stack, and application
+code all evolve together
+** Portable images define execution platfrom
+** Defined using Dockerfiles
+** Instantiated as containers
+
+NOTE: did a docker exercise
+
+== Infrastructure as Code
+
+=== Operating System Configuration
+
+* Networking
+** Network Connection
+** Identity services
+** Mounting shared storage
+
+* Kernel Features
+** Storage disk encryption
+** File systems
+** Hardware acceleration
+
+=== Middleware and Application Server Configuration
+
+* Spring/Spring Boot
+** Bean config
+** Component settings
+
+* httpd
+** Plugins
+** DocumentRoot
+** SSL
+
+=== Application Configuration
+
+* Many UNIX application have an rc file:
+** By convention these are read at application launch time
+** Vim: ~/.vimrc
+** Bash: ~/.bashrc, ~/.bash_profile
+
+=== Why is Infrastructure Config a Problem
+
+* Automation is hindered
+* If configuration is done by hand, it can become difficult to maintain
+* Release engineers and operators spend too much time putting out fires with
+configuration details
+* This wastes precious resources (human hours)
+
+=== Solution: Infrastructure as Code
+
+* Write your configuration as code
+* Manage and provision machines using code-like syntax rather than interactive
+configuration tools
+* Has all of the advantages of code
+** Can be stored and versioned in a VCS
+** Can be automatically executed to perform tasks
+
+NOTE: All puppet quests are testable
+
+=== Puppet
+
+* Puppet lets you define a desired state for all systems in your infrastructure
+* Puppet automates getting your systems into the desired state
+* Puppet runs using a master-agent architecture
+* De-centralized: Agent periodically checks the master and updates locally
+
+==== Resource Syntax
+
+image::images/lecturenotes-2079a.png[align=center]
+
+* type: the kind of thing the resource describes
+* Body: is a resource list of parameter value pairs (parameter => value)
+* title: a unique name that puppet uses to identify the resource internally
+** You can set the resource title to something other than its path if you set
+the path parameter to its path
+
+* ensure parameter: tells us the basic state of the resource
+* Provider: is the translation layer that sits between Puppet's resource
+representation and the native system tools it uses to discover and modify the
+underlying system state
+* puppet resource: allows you to see the system the way puppet does, through
+the resource abstraction layer
+
+==== Agent Master
+
+image::images/lecturenotes-bf97d.png[align=center]
+
+* Agent begins Puppet run by sending a catalog request to master (Facter)
+* Master uses information from catalog and puppet code to tell the agent
+how the resource code should be configured
+* Agents must present a certified signed certificate to communicate with master
+* On *sudo puppet agent -t* (puppet run):
+** plugins are copied from master to agent to ensure all tools are available
+
+==== Classification
+
+* Node classification: determine what puppet code will be compiled to generate
+a catalog for agent, triggers when the master receives a catalog request with
+valid certificate
+* Three ways to handle node classification
+1. site.pp manifest
+2. PE console node classifier GUI
+3. External node classifier
+
+==== Classes and Modules
+
+* A class is named block of Puppet code
+* Defining a class combines a group of resources into single reusable and
+configurable unit
+* Once defined, a class can then be declared to tell Puppet to apply the
+resources it contains
+* A module is a directory structure that lets Puppet keep track of where to find
+the manifests that contain your classes.
+
+== Midterm Questions
+
+* Cloud types of the following technologies
+** Heroku: PaaS
+** Amazon EC2: IaaS
+** Firebase: MBaaS
+** IaaS
+
+* Type 1, Type 2 and Container based deployment environments
+
+.Type 1
+image::images/lecturenotes-c50aa.png[align=center]
+
+.Type 2
+image::images/lecturenotes-7a045.png[align=center]
+
+.Type 3
+image::images/lecturenotes-50da1.png[align=center]
+
+* Key Difference between a type 1 and type 2 hypervisor
+** A type 1 hypervisor has no OS running on he host system, a type 2 hypervisor
+does have an OS
+
+* How does container-based development differ from traditional development
+** Container based development ships complete and runnable bundles
+** Containers are portable
+** Containers contain the infrastructure required for the application
+
+* What is serverless and how is it typically achieved?
+** Serverless is a variant of IaaS where capacity planning decisions are made by
+the provider
+** Serverless is elastically scalable at the application level
+** This is usually achieved by function as a service
+** Functions are deployed to be executed in a cloud environment and owner is
+charged by number of function calls
+
+* Dockerfile
+----
+FROM rikorose/gcc-cmake
+WORKINGDIR /tmp/
+COPY . /tmp/
+
+CMD ["cmake"]
+CMD ["make"]
+----
+
+* What is the purpose of virtualization? what are two key types?
+** VM, and Container
+** The purpose of virtualization is two allow one machine to run multiple
+instances of an operating system
+
+* Which Docker command do we need to use to transform a Dockerfile into its
+image?
+** docker build <image_name>
+
+* Which sub command do we use to view the shared libraries that an executable
+depends on?
+** ldd <executable>
+
+* How does a technology like docker differ from a technology like puppet?
+** Docker comes pre-assembled with all the necessary requirements, ie. correct
+version of python installed, correct OS etc.
+** Puppet maintains the appropriate configs by writing the infrastructure as code
+and maintaining the infrastructure by referencing this code
+
+* Draw a diagram to illustrate how the docker client, daemon, and registry
+communicate when the docker build subcommand is run on the below Dockerfile
+----
+FROM jekyll/Jekyll
+WORKDIR /app
+COPY . /app
+CMD ['jekyll', 'serve']
+----
+
+** Daemon communicates with registry to retrieve the jekyll image
+** Not sure...
+
+* After deploying a web application to an IaaS cloud 

@@ -716,3 +716,236 @@ n~k~> such that d(v, n~1~) and  either one of the following two cases:
 path (i.e. cycle free)
 
 WARNING: A shit load of examples on all this stuff in lectures slide 57-66
+
+== Black-Box Component Testing
+
+* Based on system's specification as opposed to its structure
+
+=== Equivalence Partitioning
+
+* Equivalence Classes (ECs): partition of the input set according to specification
+* Entire input set is covered: completeness (a)
+* Disjoint Classes: avoid redundancy (b)
+
+image::images/ECSE429LectureNotes-b636b.png[align=center]
+
+==== Weak/Strong EC Testing
+
+* Weak equivalence class testing (WECT): choose one variable from each equivalence
+class
+* Strong equivalence testing (SECT): based on the Cartesian product of the partition
+subsets i.e. test all class interactions
+
+==== EC: Discussion
+
+* If error conditions are a high priority we should extend strong equivalence
+testing to include both valid and invalid inputs
+* Equivalence partitioning is appropriate when input data is defined in terms
+of ranges and sets of discrete values
+* SECT makes the assumption that values are independent
+
+==== Heuristic for Identifying EC
+
+* For Each external input
+
+. If input is a range of valid values
+.. One valid EC within range
+.. Two invalid EC (one outside each end of the range)
+. If input is a number (N) of valid values, define:
+.. One valid EC
+.. Two invalid ECs
+. If input is an element from a set of valid values, define:
+.. One valid EC (withing set)
+.. One invalid EC (outside set)
+. If input is a "must be" situation, define:
+.. One valid EC (satisfies)
+.. One invalid EC (does not satisfy)
+. If there is a reason to tbelieve that elements in an EC are not handled in
+an identical manner by the program"
+.. subdivide EC into smaller ECs
+. Consider creating equivalence partitions that handle the default, empty,
+blank, null, or none conditions
+
+==== Myer's Test Selection Approach
+
+. Until all valid ECs have been covered by test cases:
+.. Write da new test case that covers as many of the uncovered valid ECs as
+possible
+. Until all invalid ECs have been covered by test cases:
+.. Write a test case that covers one, and only one, of the uncovered invalid
+ECs
+
+=== Boundary Value Analysis
+
+* Testing focussed on the edge of the planned operational limits of the software
+
+==== BVA: Guidelines
+
+* Use input variables within a class at: min, min+m nom, max-, max
+* Hold the values of all but one variable at their nominal value, letting one
+assume its extreme values
+* For each boundary condition:
+** Include boundary value in at least one valid test case
+
+==== General Case and Limitations
+
+* A function with n variables will require 4n+1 test cases
+* Technique to increase Robustness Testing (6n + 1 test cases)
+** For each boundary condition additionally include the value just beyond the
+boundary in at least one invalid test case
+
+==== Worst Case Testing
+
+* Test for when more than one variable has an extreme value (5^n^ cases)
+
+=== Decision Tables
+
+==== Decision Table: Structure
+
+image::images/ECSE429LectureNotes-88d17.png[align=center]
+
+==== Decision Table: Format
+
+image::images/ECSE429LectureNotes-d1b12.png[align=center]
+
+==== Decision Table: Don't Care
+
+* Don't care decision variables reduce the number of variants
+* Don't care can correspond to:
+** The inputs are necessary but have no effect
+** The inputs may be omitted
+** Mutually exclusive cases
+
+==== Test Generation Strategies for Decision Tables
+
+* All-Explicit Variants: a test case for each explicit don't care taken into
+account
+* All-variants: a test case for each implicit variant 2^n^ for n conditions
+* All-true: a test case for each variant with an outcome
+* All-false: a test case for each variant without an outcome
+
+=== Binary Decision Diagrams
+
+==== Binary Decision Trees
+
+* Each level of the tree corresponds to a decision with respect to a boolean
+variable
+** False-branch: dashed
+** True-branch: solid
+** Each leaf represents the resultant value for condition on the path from
+the root to the leaf
+
+==== Reduced Ordered Binary Decision Diagrams (ROBDD)
+
+* Compact representation of a decision table
+** Irredundancy: F and T successors of every node are distinct
+** Uniqueness: There are no two nodes testing the same variable with the
+same successors
+
+image::images/ECSE429LectureNotes-6a2fd.png[align=center]
+
+image::images/ECSE429LectureNotes-1b7a2.png[align=center]
+
+==== ROBDD Checklist
+
+* Define and ordering of variables
+* A ROBDD is a directed acyclic graph with one root and two leaf nodes
+* Make decisions in that order along all paths
+* Remove Redundant nodes
+* Merge isomorphic subtrees
+
+==== Test Cases from ROBDDs
+
+1. Map ROBDD into ROBDD determinant table
+2. Generate ROBDD test suite for each determinant
+
+image::images/ECSE429LectureNotes-7ce8c.png[align=center]
+
+=== Cause-Effect Modeling
+
+* Technique that helps derive decision tables and generate boolean formulas
+to yield test cases
+* Causes must be boolean expressions
+
+==== Cause-Effect Graph
+
+* A node is drawn for each cause and effect: nodes are places on opposite sides
+of the sheet
+* A line from a cause tot an effect indicates that the cause is a necessary
+condition for the effect
+* If a single effect has two or more causes, the logical relationship of
+the causes is annotated by symbols for logical and and logical or
+* A cause whose negation is necessary is shown by a logical not
+* A single cause may be necessary for many effects
+* Intermediate nodes may be used to simplify the graph and its construction
+
+
+image::images/ECSE429LectureNotes-22ae7.png[align=center]
+
+image::images/ECSE429LectureNotes-da39a.png[align=center]
+
+
+=== Test Generation from Cause and Effect Graphs
+
+* Divide specification into workable pieces
+* Identify causes and effects from the specification
+* Annotate model with constraints describing impossible combinations of causes
+and/or effects
+* Link causes and effects
+
+1. Use model to Generate a limited entry decision table and convert each
+column of table into a test case
+2. Use model to derive Boolean formulas and generate test cases from logic
+formulas
+
+==== Deriving a Decision Table
+
+* A row for each cause or effect
+* A column corresponds to a test variant
+* Work with a single effect at a time
+** Set effect to true
+** look backward for all combinations of inputs which will force effect to be
+true subject to constraints
+
+* Create a column for each possible combination of causes
+* For each combination, determine state of other effects
+
+==== Deriving Logic Formulas
+
+* One predicate exists for each effect (output variable)
+* If several effects are present then the resulting test is a composite of
+several predicates that happen to share decision/input variables and effects/actions
+
+. Generate initial function from cause-effect graph
+.. Start from effect node then backtrack through graph
+.. Substitute higher level clauses with lower level clauses and Boolean expressions
+. Transform into minimal, DNF form
+.. Use boolean algebra laws to reduce Boolean expressions
+.. re-express in sum of products form
+
+==== Test Generation Strategies for Logic Forumlas
+
+===== Each-condition/all-condition
+
+* Derive the set of variants following these rules
+** For each variable, include a variant such that the variable is made true
+with all other variables being false
+** One variant such that all variables are true, or one variant such that all
+variables are false
+
+===== Variable Negations
+
+* Strategy designed to reveal faults resulting from dont care implementation
+* Unique true points: one variant for each product term such that this variant
+makes the product term true but no other product term is true
+* Near false points: one variant for each literal such that this variant
+makes the whole function false and, if the value for the literal is negated,
+the whole function is true
+
+==== Full Predicate Coverage
+
+* Clause: boolean expressions that contains no boolean operators
+* Predicate: boolean expression that is composed of a clauses and zero or more
+boolean operators
+* Full predicate coverage: tries to determine whether each clause in a predicate
+is necessary and formulated correctly
