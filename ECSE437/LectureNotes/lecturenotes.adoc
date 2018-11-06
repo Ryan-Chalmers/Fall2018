@@ -580,7 +580,13 @@ containers
 ** Data privacy and security may be difficult to verify
 ** Costs can grow in unexpected ways
 
-NOTE: Here we did the exercise on Amazon EC2
+===== EC2 Exercise
+
+* Using EC2 we created an instance running Red Hat Linux or Ubuntu
+* Once the instance is instantiated we can connect via SSH
+* We used yum http to install apache on the server and created a basic html
+page
+* We had to configure the security group settings to allow http connections
 
 === Platform as a Service (PaaS)
 
@@ -611,7 +617,25 @@ workloads
 ** Convenience at the cost of configurability
 ** Platform lock-in: hard to port applications to other platforms
 
-NOTE: Did an exercise in Heroku here
+===== Heroku Exercise
+
+* Download and install heroku
+* Login to heroku using _heroku login_
+* Downloaded an instance of getting started application
+* create a new app in the current working directory (main directory of the web
+application) by running _heroku create_
+** Doing this creates a new Git remote called heroku
+** Pushing to this new remote initiates the deployment process
+
+* Initiated a deployment by pushing _git push heroku master_
+* Scale heroku instances to ensure at least one instance is running:
+_heroku ps:scale web=1_
+* Check application logs by using _heroku logs_ or use the _--tail_ option to
+see them update live
+* *Procfile*: defines how the application is launched
+** web: a special processs type that connects to Heroku's HTTP routing stack:
+_web: java -jar target/java-getting-started-1.0.jar_
+
 
 === Software as a Service (SaaS)
 
@@ -646,7 +670,17 @@ delivers most of the functionality
 ** Backendless
 ** Firebase
 
-NOTE: Did an example where we integrate firebase authentication
+==== Firebase Authentication
+
+* Provides backend services, easy to use SDKs, ready made UI libraries to
+authenticate users
+* Saves users in the cloud allowing identity to be used accoss all applications
+* FirebaseUI: a complete drop in solution for your application, simply paste the
+code in an its there
+* First authenticate credentials from the user, send these to the backend to
+verify those credentials, then sends a response back to the client, if all is
+a success you will have basic profile information available
+
 
 === Serverless
 
@@ -678,7 +712,16 @@ your application requires
 * Business Models:
 ** Freemium style
 
-NOTE: complete the AWS lambda tutorial https://is.gd/xyUQEj
+==== AWS Lambda Getting started Tutorial
+
+* From the AWS management console author a new function from scratch
+* Give the function a name, runtime, role
+* There is an option set up triggers for your function
+* Other optional config options: environment variables, tags, execution roles,
+basic settings, network, debugging and error handling, concurrency, auditing
+and compliance
+* Events: represented by key value pairs in a json
+
 
 == Virtualization
 
@@ -715,8 +758,6 @@ image::images/lecturenotes-41f24.png[align=center]
 ** Goal: treat a directory within filesystem as another root directory
 ** Pros: sharing of system and kernel level features
 
-NOTE: did an exercise where we set up a chroot jail
-
 * Java
 ** Goal: compile-once-run anywhere
 ** JVM abstracts hardware details
@@ -725,6 +766,15 @@ NOTE: did an exercise where we set up a chroot jail
 ** Workstation: run VMs on UNIX/Linux (Type 2)
 ** GSX Server: run VMs on Windows (Type 2)
 ** ESX Server: run VMs without host OS (Type 1)
+
+===== Chroot Jail Exercise
+
+* Create a directory called jail and create a bin directory in it
+* Copy /bin/bash into your jail/bin directory
+* Run ldd to list the shared libraries that we need to execute bash in the jail
+* Create a directory called lib64 within the jail and copy the libraries into
+there
+* run chroot to change root into your jail
 
 ===== Hypervisor Types
 
@@ -767,13 +817,73 @@ image::images/lecturenotes-48038.png[align=center]
 * Fixed inefficient use of CPU resources, allowing for isolated services in fewer
 VMs
 
-NOTE: read article describing docker architecture https://is.gd/Dqjy9z
+==== Docker Architecture
+
+* Provides the ability to package and run an application in a loosely isolated
+environment called a container
+* Lightweight because they don't need the extra load of a hypervisor, but run
+directly within the host machines kernel
+
+===== Docker Engine
+
+* client server with the following major components
+** A server which is a type of long-running program called a daemon process (the
+dockerd command)
+** A REST API which specifies interfaces that programs can use tot talk to the
+daemon and instruct it what to do
+** A CLI client (docker command)
+
+* CLI uses the Docker REST API to control or interact with the Docker daemon
+through scripting or CLI commands
+* The daemon creates and manages Docker objects, such as images, containers,
+networks and volumes
 
 .Docker Overview
 image::images/lecturenotes-1958a.png[align=center]
 
+===== Client-server Architecture
+
 .Docker Ecosystem
 image::images/lecturenotes-54213.png[align=center]
+
+* Client talks to Docker daemon which does the heavy lifting of building, running,
+and distributing the docker containers
+* Client and daemon can run on the same system or you can connect to a remote
+* Communicate using the rest API
+* Docker daemon:
+** listens for docker api requests and manages docker objects
+** can also communicate with other daemons
+
+* Docker registry stores docker images (docker hub)
+
+===== Docker Objects
+
+* Images
+** a read-only template with instructions for creating a Docker container
+** images usually based on others (FROM)
+** When a docker file is updated only the layers which have changed are rebuilt
+
+* Containers
+** A runnable instance of an image
+
+* Services
+** Allow you to scale containers across multiple docker daemons, which all work
+together as a swarm with multiple managers and workers
+
+====== Underlying Technology
+
+* Namespaces
+** used to create isolated workspaces called containers
+** Each aspect of a container runs in a separate namespace and its access
+is limited to that namespace
+
+* Control Groups
+** limits an application to a specific set of resources, allowing docker to
+share available hardware resources to containers
+
+* Union File Systems
+** file systems that operate by creating layers, making them lightweight and fast
+
 
 ==== Traditional vs Container-based Development
 
@@ -790,7 +900,21 @@ code all evolve together
 ** Defined using Dockerfiles
 ** Instantiated as containers
 
-NOTE: did a docker exercise
+==== Docker Exercise
+
+* Downloaded the source code for the software rebels webpafe
+* Created a Dockerfile
+* Set the parent image to jekyll/jekyll by using: _FROM jekyll/jekyll_
+* Set a working dir within the container: _WORKDIR /tmp_
+* Copy rebels into working directory: _COPY . /tmp/_
+* Set the command to be run on docker run: _CMD ['jekyll','start']_
+* Built the image: _docker build_
+* Check available images _docker image ls_
+* Create an instance of the container, mapping port to port 4000 and running in
+the background: _docker run -d -p 4000:4000 <image>_
+* Check running containers: _docker container ls_
+* Stop container: _docker container stop <id>_
+
 
 == Infrastructure as Code
 
@@ -840,8 +964,6 @@ configuration tools
 * Has all of the advantages of code
 ** Can be stored and versioned in a VCS
 ** Can be automatically executed to perform tasks
-
-NOTE: All puppet quests are testable
 
 === Puppet
 
@@ -975,4 +1097,7 @@ CMD ['jekyll', 'serve']
 ** Daemon communicates with registry to retrieve the jekyll image
 ** Not sure...
 
-* After deploying a web application to an IaaS cloud
+* After deploying a web application to an IaaS cloud provider and starting the
+web server, when we point out web browser to the correct URL the page is
+not displayed. Reason?
+** Need to allow http access in the security group settings
