@@ -1101,3 +1101,292 @@ CMD ['jekyll', 'serve']
 web server, when we point out web browser to the correct URL the page is
 not displayed. Reason?
 ** Need to allow http access in the security group settings
+
+== Deployment Strategies for Large Userbases
+
+=== What is Software Development
+
+* Releasing Strategies
+** Shipment media
+** Uploading a tarball to a location on the web
+** Push changes into packaging repositories like Maven Central or home brew
+** Upload to the app store
+** Replace the previous version of application resources on web servers
+
+* Software releases of the past were
+** Rare
+** Large
+** Expensive to produce
+** Intrusive to install
+
+* Modern software releases are
+** Frequent
+** Compact
+** Inexpensive to produce
+** Non-intrusive to install
+
+=== Release Examples
+
+* Bluth Banana POS Software
+** Developer writes code on his local machine
+** Builds the code using maven
+** Build pushed some artifact to a company server
+** POS software machine pings server checking for update
+** Machine user can choose to update if there is an available update
+** Update is install over encrypted connection
+
+=== Blue-Green Deployment
+
+==== What Challenge does blue-green deployment tackle?
+
+* Downtime during cut over:
+** One of the key challenges with maintaining a deployment environment is cutover
+*** When a release candidate is promoted from testing to production environment
+
+image::images/lecturenotes-8e160.png[align=center]
+
+** Blue-green deployment has a router thats routing all traffic to the production
+site
+** When it wants to switch over to the new deployment the router simply points
+all incoming requests to the new production environment
+
+* Failed Promotions:
+** In the case of a failed promotion the requests were sent to the broken version
+are at risk of going unfulfilled
+** To mitigate this risk send requests to both blue and green deployments during
+cutover, if the new environment fails, the previously running environment can
+resume running (*Soft Switchover*)
+
+==== Disasters
+
+* Catastrophic failure of hardware or software components needed to deliver a
+service
+* Disaster Prevention:
+** Design and deploy systems in such a way that disasters cannot happen
+** Very difficult in practice
+
+* Disaster readiness
+** Expect the unexpected
+** Design and deploy systems in such a way that should a disaster occur, the
+system can quickly recover
+
+* Disaster Recovery
+** Ideally a readiness plan is automated
+** Should a disaster occur in the deployment environment, a spare environment
+shoyld be able to take over
+
+==== Blue-Green and Disaster Recovery
+
+* Environmental redundancy
+** Blue green deployments are essentially disaster recovery
+** If a failure occurs while the blue deployment is live, the green deployment
+can take over
+
+* Disaster recover should be tested
+** we want to make sure that when a problem occurs, the emergency procedures work
+
+==== Three Tier Architecture
+
+image::images/lecturenotes-12dac.png[align=center]
+
+* Database schemas evolve
+** As the system changes, the database also needs to be reorganized
+** The schema changes may make the previous logic layer obsolete
+
+* Perform Schema updates in Two Phases
+** Phase 1
+*** First, the database schema should be refactored in such a way that both
+new and old logic layers work
+*** This way if promotion fails the application can fail back over to the prior
+deployment
+
+** Phase 2
+*** After the analytics about the new deployment are clean, the old schema
+details can be retired
+
+=== A/B Testing
+
+* Experimental design:
+** Subjects split into two groups
+** Control: do not receive any treatment and are included to measure baseline
+behavior
+** Treatment: receive a treatment for which a hypothesis has been formulated
+
+* Randomized Experiments
+** Subjects are randomly assigned to the control group or one treatment group
+** Each participant should have the same likelihood of appearing in either group
+
+* A/B testing is the application of randomized experiments to software testing
+* A/B testing implies that, at its core, a software change can be formulated
+as a hypothesis
+
+* Hypothesis formulation
+** In the context of software, hypothesis can be formulated about changing/improving
+some "bottom line" related measurements
+*** Click through rate
+*** Performance measurements
+
+** E.g.: Changing the button colour from blue to green will increase the click
+through rate
+
+* Group Assignment
+** Randomly split the population of users into two groups of equal size: A and B
+** Each group is shown a system variant, where A is usually shown the control
+and B the treatment version
+** Each user has a n equal probability of being assigned to group A or B
+
+=== How do we Know if the Experiment was Successful
+
+.https://upload.wikimedia.org/wikipedia/commons/2/2e/A-B_testing_example.png
+image::images/lecturenotes-71794.png[align=center]
+
+* Statistical hypothesis testing:
+** Used to check if two samples are derived from the same distribution
+** The output of a statistical test can usually be represented using a p-value
+*** The likelihood of two samples coming from the same population
+
+** To perform the hypothesis test, the p-value is compared to a threshold (alpha)
+value
+** If the p-value is less than alpha, the null hypothesis should be rejected
+
+=== Lady Tasting Tea Example
+
+* Null Hypothesis
+** The lady has no ability to detect the tea with milk-first
+
+* Experiment
+** N=8 cups of tea
+** Four milk first, four milk after
+** She labels cups milk-first or not
+
+.Number of possible combinations
+image::images/lecturenotes-8bf04.png[align=center]
+
+* Distribution of possible outcomes
+
+image::images/lecturenotes-d43d0.png[align=center]
+
+* If she choses all 4 cups correct then we can conclude that she has the ability
+to detect the cups
+
+=== Fischer Exact Test
+
+.Contingency Table
+image::images/lecturenotes-bd175.png[]
+
+=== Canary Relases
+
+* The Problem:
+** Each software release introduces some risk
+** How can we minimize risk of deploying broken releases to global userbase
+
+* Working definition
+** Partial, time-limited deployment of a change in a service
+** Followed by an evaluation of the safety of the changed service
+** Production may then
+*** Roll forward
+*** Roll back
+*** Alert an operator
+
+==== Canary Analysis Service (CAS) at Google
+
+image::images/lecturenotes-1fe92.png[align=center]
+
+. Set up Canary
+.. Rollout tool exposes canary to a subset of the user population
+.. Remainder of population serves as control
+.. CAS does not help with population selection
+. Ask CAS
+.. Rollout tools "ask" CAS to evaluate the canary
+.. Results are binary PASS/FAIL
+.. Results are derived from official statistical tests or commonly adopted
+heuristics
+. Receive Verdict
+.. Each request to CAS executes a trial
+... A series of requested checks
+.. Result is PASS iff all checks pass, FAIL otherwise
+. Roll Forward/back
+.. The rollout tool can make a decision based on verdict
+... if Pass, then rollout
+... if Fail, then roll back
+.. The rollout tool may also report results to devs
+
+==== How Does CAD Look Internally
+
+image::images/lecturenotes-0b6a5.png[align=center]
+
+* RPC Interface
+** Evaluate(): returns an EvaluationID (Unique URL); non blocking call
+** GetResult(EvaluationID): Blocks until evaluation ID is actually complete
+
+* User configuration
+** For each check:
+*** What is its name?
+*** How to get a time series for the metric
+*** How to transform time series into verdict
+
+* Monarch
+** An external monitoring service
+** User-expressed queries are rewritten to independently analyze control population
+
+TODO:: Reading
+
+=== Chaos Engineering
+
+* The problem:
+** Production conditions are hard to predict
+** Rarely occurring field conditions may lead to the catastrophic failures in the
+field
+
+==== What We would Like to do
+* Examples of hard-to-test-for failures
+** Improper fallback settings when a service is unavailable
+** Retry storms from improperly tuned timouts
+** Outages when a downstream dependency receives too much traffic
+** Cascading failures when a single point of failure crashes
+
+
+* Early Identification
+** We should test systems for sensitivity to change in deployment environments
+** Passing such tests would increase teams confidence in releasing products
+to chaotic deployment environments
+
+* Understanding Chaos
+** Testing all possible environment conditions suffers from a combinatorial
+explosion
+** Instead, aim to mimic the chaos of real world deployment environment
+
+==== Solution: Chaos Engineering
+
+* Mimicing realistic deployment environments
+** Since realistic scenarios are hard to imagine, one can think of deployment
+environments as chaotic
+** The degree to which a system can withstand chaotic deployment changes can
+help us gain confidence in the resiliency of a release
+
+* Formulating the Experiment
+** Define a study state deployment setting
+*** Express how steady state execution and output can be checked using metrics
+
+** Introduce variables to express real-world events
+*** Server crashes, hard disk failures, cleaning staff knocks network cable
+out of server
+
+* Null Hypothesis
+** A real-world event has no impact on execution or output metrics
+
+* The experiment
+** Characterize the steady state by taking measurements in production
+** Simulate real-world event
+** Characterize the post-treatment environment by taking measurements in production
+** Restore the previous production setting
+
+* The analysis
+** Apply a statistical hypothesis test or a heuristic-based analysis to check if
+the null hypothesis should be rejected
+
+* Lather, Rinse, repeat
+** Repeat the experiment for other real-world events
+** Use randomness to decide which real-world events to simulate
+
+TODO:: Reading
