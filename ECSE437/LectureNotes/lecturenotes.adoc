@@ -1143,12 +1143,12 @@ not displayed. Reason?
 ** One of the key challenges with maintaining a deployment environment is cutover
 *** When a release candidate is promoted from testing to production environment
 
-image::images/lecturenotes-8e160.png[align=center]
-
 ** Blue-green deployment has a router thats routing all traffic to the production
 site
 ** When it wants to switch over to the new deployment the router simply points
 all incoming requests to the new production environment
+
+image::images/lecturenotes-8e160.png[align=center]
 
 * Failed Promotions:
 ** In the case of a failed promotion the requests were sent to the broken version

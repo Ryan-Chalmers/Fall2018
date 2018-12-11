@@ -1,6 +1,6 @@
 = ECSE 429
 
-== Intro to Software Quality Assurance
+== 01. Intro to Software Quality Assurance
 
 === Basic Terminology
 
@@ -187,10 +187,34 @@ production without any manual intervention
 production at any time with as much automation as possible for each step
 
 
-== Software Testing
+== 02. Software Testing
+
+=== Software Testing Definitions and Objective
+
+==== Definitions
+
+* Mistake: people commit errors
+* Defect: a mistake can lead to a defect
+* Failure: a failure occurs when a defect executes
+* Incident: a consequence of failures
+* Software testing: exercise the software with test cases to gain confidence in
+the system
+
+==== Testing vs. Debugging
+
+* Debugging
+** Find the cause of the bug
+** Find, analyzes and fixes such defect
+** Carried out mostly by the development team
+
+* Testing
+** Find the bug
+** Shows failures caused by defects
+** Carried out mostly by the QA team
 
 === Why is Testing Difficult
 
+* Exhaustive testing  is impractical if not impossible
 * Upper limit to total number of test cases
 * *continuity property* small differences in operating conditions will not result
 in dramatically different behavior -> *not true in software!*
@@ -213,28 +237,64 @@ image::images/ECSE429LectureNotes-b7b3f.png[align=center]
 
 ==== Component/Unit Testing
 
+* Done in isolation from the rest of the system
+* May cover functional and non-functional aspects
+* Defects are fixed as soon as found
+* No formal defect management
+
 ==== Integration Testing
 
+* Component integration testing
+** Interactions and interfaces between integrated components
+** Right after component testing
+** Typically automated
+
+* System integration testing
+** Interactions and interfaces between packages, subsystems, microservices,
+external services
+** After/in parallel with system testing
+
 ==== System Testing
+
+* Typically carried out by independent testers
+* Best practice: involve testers early in defining user stories
 
 ==== Acceptance Testing
 
 * User level: fitness for use by intended users
-* Operational
+* Operational: sysadmins perform in a simulated production environment
 * Contractual: check with respect to contract's acceptance criteria
-* Alpha and Beta
+* Alpha and Beta: build confidence among potential or existing customers and
+operators that they can use the system under regular conditions
 
 === Test Types
 
-* Functional vs. non-functional
-** Functional: evaluate that the system performs with respects to requirements
-** non-functional: evaluate characteristics system as a whole
+==== Functional
 
-* Black-box vs. White-box
-** Black-box (functional)
-** White-box: aim to derive tests based on systems internal structure
+* evaluate that the system performs with respects to requirements and
+specifications (ie. user stories, use cases)
+* Completeness, and correctness
+* *functional coverage* to what extent a functional element has been exercised
+by tests
+
+==== Non-Functional
+
+* evaluate characteristics system as a whole
+* Reliability, performance, security, usability
+* Sample technique: boundary value analysis
+
+==== Black-box
+
+* Same as Functional
+
+==== White Box
+
+* Derive tests on the system's internal structure e.g control or data flow
 
 ==== Oracles and Test Coverage
+
+* Associated criteria
+** Test cases must cover ... in the model
 
 ==== Regression Testing
 
@@ -351,9 +411,325 @@ evaluating test basis for testability
 7. How can white-box testing be applied during acceptance testing? To check if
 all work process flows have been covered
 
-== Static Validation and Verification Techniques
+== 03. Static Validation and Verification Techniques
 
-== White Box Testing
+=== Static V&V Techniques
+
+* No execution of work product
+* Enables early detection of defects
+* Cheaper to remove defects when found early
+
+* Typical defects found  by static V&V
+** Requirement defects
+** Design defects
+** Coding defects
+** Incorrect interface specifications
+** Security vulnerabilities
+** Maintainability defects
+
+=== Review Process
+
+* *review process* a process or meeting during which a work product, or set of
+work products, is presented to project personnel, managers, users, customers,
+or other interested parties for comment or approval
+* Purpose:
+** Identify defects and new risks
+** Informally exchange knowledge
+** Collect data to learn from mistakes
+
+* Human examination of any work products
+** Requirements, design, source code, test cases...
+
+==== Types of Reviews
+
+* Informal Review:
+** Performed by development team
+** Main purpose: detect potential defects
+
+* Walkthrough
+** Mostly informal, driven by author of work product
+** Man purpose: find defects, improve software product, consider alternative
+implementations, evaluate conformance to standards and specifications
+
+* Technical Review
+** Document process, experts are involved
+** Main purpose: gain consensus, detect potential defects
+
+* Inspection
+** Formally document process, external experts, moderators involved
+** Main purpose: detect potential defects, evaluate quality and build conformence
+in the work product, prevent future similar defects through author learning and
+root cause analysis
+
+=== Inspections
+
+* Strict, formal review
+* Obtain defects, collect data, communicate development documents
+* Roles:
+** Moderator
+** Scribe
+** Reviewer
+** Reader
+** Producer
+
+==== Checklists
+
+* Most important tool for formal reviews
+* Generate checklists for various types of reviews
+** Requirements
+** Design
+** Generic code
+** Specific language code
+** Generic Document
+
+* Organizations develop specific checklists
+* Should be maintained, improved, developed updated
+
+==== Inspections: Roles
+
+* Moderator
+** Ensures that inspection procedures are followed
+** Verifies that the work products readiness for inspection
+** Assembles inspection team
+** Comes from outside the project team
+
+* Recorder
+** Documents all defects that arise from the inspection meeting in an inspection
+defect list
+** Not just a procedural task, requires technical knowledge
+
+* Reviewer
+** Analyzes and detects defects in the work product
+** All participants play this role
+
+* Producer:
+** Work product author
+** Responsible for correcting any found defects
+
+==== Inspection Process
+
+image::images/ECSE429LectureNotes-bdf5a.png[align=center]
+
+* Planning
+** identify work product, determine, whether the product meets entry criteria,
+select the team, assign roles, prepare and distribute the inspection forms and
+materials, set the inspection schedule, and determine whether to hold an overview
+
+* Overview
+** Optional phase where team members who are unfamiliar receive orientation
+
+* Preparation
+** Key stage in which members of the inspection team inspect the work individually
+looking for defects in work product
+** Most of the defects are found during this step, not during inspection meeting
+
+* Inspection Meeting
+** Inspection team members meet to find, categorize, and record possible defects
+in the work product
+** No resolution of defects is attempted but action items are assigned
+
+* Third Hour
+** Optional additional time, apart from the inspection meeting, that can be used
+for discussion, possible solutions, of closure of open issues raised during the
+inspection meeting
+
+* Rework
+** The work product is revised by the author to correct defects found during the
+inspection
+
+* Follow up
+** Meeting between the moderator and author to determine if defects found during
+the inspection meeting have been corrected and to ensure that no additional
+defects have been introduced
+
+==== Review Reports
+
+* Rate the severity of a defect
+* Possibly determine statics about findings and invested resources, quality
+metrics
+
+=== Modern Code Reviews
+
+image::images/ECSE429LectureNotes-25d01.png[align=center]
+
+==== Roles
+
+* Author:
+** Responsible for correcting problems that are identified
+
+* Reviewer
+** Analyzes and detects problems in the artifacts
+
+==== Preparing for a Review
+
+* Prefer small changes
+* Only submit complete, self-reviewed, self-tested code
+* Commit messages guidlines
+
+==== Performing Code Reviews
+
+* Purpose: does it fulfill its purpose
+* Implementation: how did you solve the problem?
+* Legibility and Style
+* Maintainability
+* Security
+
+==== How to Comment
+
+* General guidelines: concise, friendly, actionable
+* Critique the code not the author
+* Differentiate between
+** Suggestion
+** Required changes
+** Points that need clarification
+
+* Once complete indicate: required response, or re-review
+
+=== 10. Principles of Good Code Review
+
+. If you commit to code review, review thoroughly
+. Aim to understand every changed line
+. Dont assume the code works - build and test yourself
+. Commenting matters
+. Review temporary code as strictly as production code
+. Consider how the code will work in production
+. Check documentation, tests and build files
+. keep priorities straight when making suggestions
+. Follow-up on reviews
+. Reviewers are not perfect
+
+==== Pressman's Inspection Guidelines
+
+. Review the product not the producer
+. Set and agenda and maintain it
+. Limit debate and rebuttal
+. Identify problem areas, but problem solving should be postponed until after
+the review meeting
+. Take written notes
+. Limit the number of participants and insist on advanced preparation
+. Develop a checklist for each product that is likely to be reviewed
+. Allocate resources and schedule time for review
+. Conduct meaningful training for all reviewers
+. Prepare report and establish follow-up procedure
+. Review the review process
+
+=== Appendix A
+
+TODO::
+
+=== Appendix B
+
+TODO::
+
+=== Coding Guidelines
+
+* Set of rules giving recommendations on style and best programming practices
+
+=== Pattern-Based Static Analysis Tools
+
+* Automated analysis of software without code execution
+* Scope
+** Basic static properties with error patterns
+
+==== Visitor Pattern in Static Analysis
+
+* Visitor pattern: separate an algorithm from an object structure
+** Each class has an "accept" method that takes a visitor object as an argument
+** The visitor is an interface that has a different "visit" method for each
+element
+** The "accept" method of an element class calls back the "visit" method for
+its class
+** Separate concrete visitor classes can perform some particular operations
+
+image::images/ECSE429LectureNotes-8e827.png[align=center]
+
+==== ASG/DOM
+
+image::images/ECSE429LectureNotes-1d94b.png[align=center]
+
+==== Pattern-based Static Analysis
+
+* Abstract Syntax Graph: knowledge representation of program as typed and
+attributed graphs
+* Find erroneous cases by graph pattern matching
+** Find a small graph pattern in a large graph model
+** Match: complete mapping
+*** Graph pattern nodes -> graph model nodes
+*** Graph pattern edges -> graph model edges
+*** No match -> no violations
+
+==== Example: Graph Patterns
+
+image::images/ECSE429LectureNotes-e7785.png[align=center]
+
+* Concatenation to Empty String
+** Nodes: NodeType(var)
+*** e: InfixExpression
+*** lit: StringLiteral
+*** k: OperatorKind
+
+** Edges: edgeType(from, to)
+*** leftOperand(e, lit)
+*** kind(e,k)
+
+** Attribute Checks:
+*** lit.value == ""
+*** k == PlusOperator
+
+image::images/ECSE429LectureNotes-5131b.png[align=center]
+
+image::images/ECSE429LectureNotes-9eac0.png[align=center]
+
+==== Use of Lightweight Analyzers
+
+* Typically part of the CI chain
+* Customize the tools
+* Review results carefully
+** False Positives (false alarm)
+*** Reported issue/defect would not cause a failure
+
+** False negatives
+*** Lack of errors does not mean correct software
+
+=== Abstract Interpretation for Static Analysis
+
+* Goal:
+** Testing: investigates one run of the program
+** Static analysis: Reason about all runs of the program
+
+* Outcome:
+** Testing: Pass/Fail
+
+* Static Analysis
+** Safe/Error/Incomplete
+
+==== Complexity Issues
+
+* Can the analyzer prove that for any program P and Input I, P will terminate
+or not?
+** The Halting Problem (HP) -> Undecidable
+
+==== Soundness vs Completeness
+
+* Soundness
+** If prover says that P is true -> P is true
+** Trivially sound: SA says nothing
+* If SA says program is error free it is really error free
+
+image::images/ECSE429LectureNotes-f320d.png[align=center]
+
+* Completeness
+** If P is true -> SA says that P is true
+** Trivially complete: say everything
+** If program is claimed to be erroneous it is erroneous
+
+image::images/ECSE429LectureNotes-d34d2.png[align=center]
+
+* IF SA says P is true <-> P is true
+** Things I say are all the true things
+
+
+== 04. White Box Testing
 
 === What is White Box Testing
 
@@ -715,9 +1091,391 @@ n~k~> such that d(v, n~1~) and  either one of the following two cases:
 ** p-use of v on edge n~j~ to n~k~, and <n~1~,n~2~, ...,n~j~> is def-clear loop-free
 path (i.e. cycle free)
 
-WARNING: A shit load of examples on all this stuff in lectures slide 57-66
+===== All-Definitions
 
-== Black-Box Component Testing
+* At least one def-clear path from every defining node of v, to at least one
+use of v, regardless if it is a c-use or a p-use
+
+===== All-Uses
+
+* For all variables v: At least one def-clear path from every defining node of
+v ti every reachable use of v
+
+===== All-P-Uses/Some-C-Uses
+
+* For all variables v: At least one def-clear path from every defining node of
+v to every reachable p-use of v, if def of v has none, then use c-use
+
+===== All-C-Uses/Some-P-Uses
+
+* For all variables v: at least one def-clear path from every defining node of
+v to every reachable c-use of v, if def of v has none, then to a p-use
+
+===== All-DU-Paths
+
+* All du-paths covered: for all variables v from every defining node of v to
+every use of v
+
+===== Hierarchy of Data Flow Coverage Criteria
+
+image::images/ECSE429LectureNotes-79e3f.png[align=center]
+
+=== Mutation Testing
+
+image::images/ECSE429LectureNotes-15d72.png[align=center]
+
+* *Fault-based Testing* directed towards "typical" faults that could occur in a
+program
+* Basic idea:
+** Take a program and test data generated for that program
+** Create a number of similar programs (mutants), each differing from the original in one
+small way
+** The original test data then run through the mutants
+** IF the test data detects all difference in mutants, then the mutants are said
+to be dead and the test set is adequate
+
+* A Mutant remains *live* either because it is equivalent to the original program
+(functionally identical but syntactically different - *equivalent mutant*) or
+the test set is inadequate to *kill* the mutant
+* For the automated generation of mutants we use mutation operators
+
+==== Different Mutants
+
+* *Stillborn Mutant* syntactically incorrect, killed by compiler
+* *Trivial mutant* killed by almost any test case
+* *Equivalent mutant* always produces the same output as the original program
+
+==== Specifying Mutation Operators
+
+* Ideally, we would like the mutation operators to be representative of *all*
+realistic types of faults that could occur in practice
+* Mutation operators change with programming languages, design and specification
+paradigms
+* In general, the number of mutation operators is *large* as they are supposed
+to capture all possible syntactic variations in a program
+* Mutants are considered to be good indicators of test effectiveness
+
+==== Mutation Coverage
+
+* Complete coverage equates to killing all non-equivalent mutants
+* The amount of coverage is called *mutation score*
+* We can see each mutant as a test requirement
+
+==== Assumptions
+
+* *Competent Programmer Assumptions*: Given a specification a programmer develops
+a program that is either correct or differs from the correct program by a combination
+of simple errors
+* *Coupling Effect Assumption*: test data that distinguishes all programs differing
+from a correct one by only simple errors is so sensitive that it also implicitly
+distinguishes more complex errors
+
+==== Mutation Testing Process
+
+image::images/ECSE429LectureNotes-5d210.png[align=center]
+
+==== Mutation Testing Discussion
+
+* Measures the quality of test cases
+* Assumptions: in practice, if the software contains a fault, there will usually
+be a set of mutants that can only be killed by a test case that also detects that
+fault
+* Provides the tester with a clear target
+* Computationally intensive, a possibly very large number of mutants is generated
+* Equivalent mutants are a practical problem: it is in general an undecidable
+problem
+
+=== Summary: White-Box Testing
+
+* One advantage of structural criteria is that their coverage can be measure
+automatically
+* High coverage is not a guarantee of fault-free software, just an element of
+information to increase our confidence
+* Control/data flow-oriented approaches
+* Mutation testing
+* Hierarchies of coverage criteria
+
+== 05. Unit Testing Smells and Best Practices
+
+=== Test Smells
+
+* Anti-patterns/"code smells"
+** Opposite of a design pattern
+** Identify poor solutions to recurring design problems
+** Symptoms of poor design choices
+
+==== Categorization of Test Smells
+
+==== Code Smells
+
+* Classic bad smells
+* Examples
+** Obscure test
+** Conditional test logic
+** Hard-to-test code
+
+==== Behavior Smells
+
+* Encountered when we compile or run tests
+* Examples
+** Assertion roulette
+** Erratic Test
+** Fragile Test
+
+==== Project Smells
+
+* Something has gone wrong with the project
+* Examples
+** Buggy tests
+** Developers not writing tests
+** High test maintenance costs
+
+* A project manager can watch out for
+** Buggy tests: Bugs are regularly found in the automated tests
+** Developers arent writing automated tests
+*** Not enough time
+*** Wrong test automation strategy
+
+** High test maintenance costs
+*** Too much effort spent on maintaining existing tests
+
+** Production bugs
+*** Too many bugs found during formal test or production
+
+=== (Test) Code Smells
+
+==== Obscure Test
+
+* It is difficult to understand the test at a glance
+* Impact
+** Makes test harder to understand and maintain
+** Can lead to High Test Maintenance Cost
+
+* Causes
+** Having wrong information in the test
+** Too Much information
+
+==== Eager Test
+
+* The test is verifying too much functionality in a single Test Method
+* Fix:
+** It is better to have a suite of independent single condition tests
+
+==== Mystery Guest
+
+* The test reader is not able to see the cause and effect between fixture and
+verification logic because part of it is done outside the Test Method
+* Examples
+** A filename of an existing external file
+** The contents of a database record identifies by a literal key
+** The contents of a file is read and used in calls to Assertion Methods to
+verify the expected outcome
+
+==== General Fixture
+
+* The test is building or referencing a larger fixture than is needed to verify
+the functionality in question
+
+==== Hard-coded Test Data
+
+* Data values in the fixture, assertions or arguments of the SUT are hard-coded
+in the test method obscuring cause-effect relationships between inputs and
+expected outputs
+
+==== Conditional Test Logic
+
+* A test contains code that may or may not be executed
+* Impact
+** it makes it hard to know exactly what a test is going to do
+
+===== Causes of Conditional Test Logic
+
+* Flexible Test
+** test code verifies different functionality on when or where it is run
+
+* Conditional Verification Logic, Production Logic
+** CTL to verify expected outcome
+** CTL in the results verification section
+
+* Complex Teardown
+** More likely to leave test environment corrupted by not cleaning up correctly
+
+* Multiple Test Conditions
+** A test is trying to apply the same test logic to many sets of input values
+each with their own corresponding expected result
+
+==== Hard to Test Code
+
+* Code is difficult to test
+* Impact: hard to verify quality
+* Causes
+** Highly coupled code: code cannot be tested without testing several other classes
+** Asynchronous code: a class cannot be tested via direct method calls
+
+==== Test Code Duplication
+
+* The same test code is repeated many times
+* Impact
+** Increase code maintenance due to copy paste
+
+==== Test Logic Production
+
+* The code that is put into production contains logic that should be exercised
+only during tests
+* Impact
+** Makes the SUT more complex
+** Opens the door to additional kinds of bugs
+
+* Causes
+** test hooks: conditional logic within the SUT determines whether the real code
+or test-specific logic is run
+** For tests only: code in the SUT strictly for use by tests
+** Test dependency in production
+
+=== Behavior Smells
+
+==== Assertion Roulette
+
+* It is hard to tell which of several assertions within the same test method
+caused a test failure
+* Impact
+** if the test only runs on a build server, it is hard to tell what is wrong
+
+* Causes
+** Eager tests: a single test verifies too much functionality
+** Missing assertion massage
+
+==== Erratic Tests
+
+* One or more tests are behaving erratically; sometimes they pass, sometimes
+they fail
+* Impact
+** Tempted to remove failing test from suite -> lost test
+
+* Causes
+** Interaction test/test suite: test suite depend upon each other
+** Resource leakage: tests or the SUT consume finite resources
+** Resource optimism: test depends on external resources -> non-deterministic
+results depending on when/where it is run
+** Unrepeatable Tests: a test behaves differently the first time it is run
+then how it behaves in subsequent runs
+** Test run war: test failures occur at random when several people are running
+tests simultaneously
+
+==== Fragile Tests
+
+* A test fails to compile or run when the SUT is changed in ways that do no
+affect the part the test is exercising
+* Impact
+** Increase the cost of test maintenance
+
+* Causes:
+** Interface sensitivity: test fails to compile or run because some part of the
+interface of the SUT has changed
+** Behavior sensitivity: changes to the SUT cause other tests to fail
+** Data sensitivity: test fails because the data being used to test the SUT has
+been modified
+** Context sensitivity: the state behavior of the context in which the SUT
+executes has changed
+
+==== Frequent Debugging
+
+* Manual debugging is required to required to determine the cause of most test
+failures
+* Symptoms
+** The output of the Test Runner is insufficient to determine the problem so we
+have to use an interactive debugger to determine where things went wrong
+
+* Impact
+** manual debugging is slow
+
+* Causes
+** Missing unit tests
+** Missing component tests
+
+==== Manual Intervention
+
+* A test requires a person to perform some manual action each time it is run
+* Impact:
+** tests cannot be automated -> high maintenance costs
+
+* Causes
+** Fixture setup
+** Result verification
+** Even injection
+
+==== Slow Tests
+
+* The tests take too long to run
+* Impact
+** Reduced productivity
+
+* Causes
+** Slow component usage: A SUT component has high latency
+
+=== Principles and Best Practices of Test Automation
+
+==== Test Automation Manifesto
+
+. Write the tests first (TDD)
+. Design for testability
+. Use the front door first (public interface)
+. Communicate intent
+. Do not modify the SUT
+. Isolate the SUT
+. Keep the tests independent
+. Minimize test overlap
+. Minimize untestable code
+. Keep test logic out of production code
+. Verify one condition per test
+. Test concerns separately
+. Ensure commensurate effort and responsibility
+
+==== Verify One Condition per Test
+
+* (Bad) Idea:
+** Many tests require a specific initial state
+** Many operations change this to a new state
+** Reuse the new state for the second test
+
+* Not recommended
+** When one assertion fails, the rest of the test will not be executed
+
+==== How to Structure Test Code
+
+* Setup test fixture
+** Patterns: inline setup, delegated setup, implicit setup
+
+* Exercising the SUT
+** Call its API
+
+* Verify the expected outcome
+** Call assertion methods
+
+* Tear down test fixture
+
+==== Naming Conventions
+
+* Name test classes and methods systematically
+* Test class test method should convey
+** Name of the SUT class
+** Name of method/feature being tested
+** Important characteristics of any input values related to the exercising of
+the SUT
+** Anything relevant about the state of the SUT or its dependencies
+
+==== Code Reuse: Parameterized Tests
+
+* We pass information needed to do fixture setup and results verification to a
+utility method that implements the entire test lifecycle
+
+==== Code Reuse: Test Utility Method
+
+* We encapsulate the test logic we want to reuse behind a suitably name utility
+method
+
+
+== 06. Black-Box Component Testing
 
 * Based on system's specification as opposed to its structure
 
@@ -923,7 +1681,7 @@ several predicates that happen to share decision/input variables and effects/act
 .. Use boolean algebra laws to reduce Boolean expressions
 .. re-express in sum of products form
 
-==== Test Generation Strategies for Logic Forumlas
+==== Test Generation Strategies for Logic Formulas
 
 ===== Each-condition/all-condition
 
@@ -949,3 +1707,540 @@ the whole function is true
 boolean operators
 * Full predicate coverage: tries to determine whether each clause in a predicate
 is necessary and formulated correctly
+
+== 07. Integration Testing
+
+=== Integration Testing
+
+* Objective: ensure components interact correctly when assembled
+* Assumption: components are already unit tested
+* Need a component dependency structure
+
+image::images/ECSE429LectureNotes-5786a.png[align=center]
+
+==== Integration Strategy
+
+* How individual components are assembled to form larger program entities
+** Problem 1: test component interaction
+** Problem 2: determine optimal order of integration
+
+* Strategy impacts
+** The form in which unit test cases are written
+** The type of test tools to use
+** The order of coding/testing components
+** The cost of generating test cases
+** The cost of locating and correcting detected defects
+
+=== Stubs Vs. Drivers
+
+==== Integration Testing: Stubs
+
+* Stub - replaces a called modules:
+** Stub for input module passes test data
+** Stub for output module returns test results
+
+* Can replace whole components
+* Must be declared/invoked as the real module
+** Same name as replaced module
+** Same parameter list as replaced module
+** Same return type as replaced module
+** Same modifiers as replaced module
+
+* Common functions of a stub
+** Display/log trace message
+** Display/log passed parameters
+** return value according to test objective
+
+==== Integration Testing: Drivers
+
+* Driver module used to call tested modules
+** Parameter passing
+** Handling return values
+
+* Typically, drivers are simpler than stubs
+
+==== Integration Strategies
+
+===== Big Bang Integration
+
+* Non-incremental strategy
+* Integrate all components as a whole
+* Assumes components are initially tested in isolation
+* Advantages: convenient for small/stable systems
+* Disadvantages
+** Does not allow parallel development
+** Fault localization difficult
+** Easy to miss interface faults
+
+==== Top-Down Integration
+
+* Incremental Strategy
+* Test high-level components, then called components until lowest level components
+* Possible to alter order in a way to test as early as possible
+** Critical components
+** I/O components
+
+* Advantages
+** Fault localization easier
+** Few or no drivers needed
+** Possibility to obtain early prototype
+** Testing can be in parallel with implementation
+** Different order of testing/implementation possible
+** Major design flaws found first
+
+* Disadvantages
+** Needs lots of stubs
+** Potentially reusable components can be inadequately tested
+
+==== Bottom-Up Integration
+
+* Incremental Strategy
+* Test low-level components, then components calling them until highest-level
+component
+* Advantages
+** Fault localization easier
+** No need fo stubs
+** reusable components tested thoroughly
+** Testing can be in parallel with implementation
+** Different order of testing/implementation possible
+
+* Disadvantages
+** Needs drivers
+** High-level components tested last
+** NO concept of early skeletal system
+
+==== Sandwich integration
+
+* Combines top-down and bottom-up approaches
+* Distinguishes three layers
+** Logic(top) -> tested top-down
+** Middle
+** Operational (bottom) -> tested bottom
+
+== 07.1 Testing OO Systems
+
+=== Introduction
+
+==== Motivation
+
+* Object-orientation helps analysis and design of large systems but, based on
+existing data, it seems that more, not less, testing is needed for OO software
+* Need to account for in testing
+** Encapsulation of State
+** Inheritance
+** Polymorphism and dynamic binding
+** Abstract classes
+** Exceptions
+
+==== Class vs Procedure Testing
+
+* Procedural programming
+** Basic component = function
+** Testing method = based on I/O relation
+
+* Object-oriented programming
+** Basic component = class
+** Objects are tested
+** Correctness cannot simply be defined as an I/O relation, but must also include
+the object state
+
+* Testing single methods can be based on traditional unit testing techniques
+* In OO systems, most methods contain a few LOCs - complexity lies in method
+interactions
+* Method behavior is meaningless unless analyzed in relation to other operations
+and their joint effect on a shared state
+
+* Testing classes poses new problems
+** The identification of behavior to be observed
+** The manipulation of object state without violating encapsulation principle
+** Polymorphism and dynamic binding leads to the test of one-to-many possible
+invocations of the same interfaces
+* Each exception needs to be analyzed
+
+==== New Fault Models
+
+* Traditional fault taxonomies, do not include faults due to OO features
+* New fault models are vital
+
+=== Integration Levels
+
+==== OO Integration Levels
+
+* Functions are basic units in procedural software
+* Classes introduce a new abstraction level
+* Basic unit testing: the testing of a single operation (method) of a class
+(intra-method testing)
+* Unit testing: the testing of methods within a class (intra-class testing)
+** It is claimed that any significant unit to be tested cannot be smaller than
+the instantiation of one class
+
+* Intra-class testing
+** Data flow-based testing
+** Each exception raised at least once
+** Each interrupt forced to occur at least once
+** Each attribute set and got at least once
+** State-based testing
+** Big bang approach indicated for situation where methods are tightly coupled
+** Alpha-omega cycle
+** Complex methods can be tested with stubs/mocks
+
+* Cluster integration
+** Integration of two or more classed through inheritance -> incremental test
+of inheritance hierarchies
+** Integration of two or more classes through containment
+** Integration of two or more associated classes/clusters to form a component
+
+* Integration of components into a single application
+
+=== Mock Objects
+
+image::images/ECSE429LectureNotes-33b26.png[align=center]
+
+* Testing of OO systems requires drivers and stubs
+* Difficult to flexibly stib dependent code without
+** Changing CUT
+** Maintaining a library of stub objects
+
+* Mock objects - form of stubs:
+** Based on interfaces
+** Easier to setup and control
+** Isolates code from details that may be filled later
+** Can be refined incrementally by replacing with actual code
+
+* Based on dependency inversion model
+** Higher level modules use interfaces as an abstract layer instead of
+lower-level modules directly
+
+* Test controls mock behavior
+* Mock transparently replaces actual code
+
+=== Integration Strategies
+
+==== Cluster Integration
+
+image::images/ECSE429LectureNotes-99dbb.png[align=center]
+
+* needs a class dependency tree
+
+===== Cluster Integration: Big Band
+
+* Recommended only when
+** Cluster is stable, only few elements added/changed
+** Small Cluster
+** Components are very tightly coupled
+
+===== Cluster Integration: Bottom-up
+
+* Most widely used technique
+** Integrate classes starting from leaves and moving up
+
+===== Cluster Integration: Top-Down
+
+* Widely used technique
+** Integration classes starting from the top and moving down
+
+===== Cluster Integration: Scenario Based
+
+* Scenario
+** Describes interaction of classes
+
+* Approach
+. Map collaborations onto dependency tree
+. Choose a sequence to apply collaborations
+. Develop and run test exercising collaboration
+
+==== Client/Server Integration: Two Tiers System
+
+. Test each representative client with stub for server
+. Test server with stub for each client type
+. Test pairs of client types with the actual server
+. Remove all stubs and test server with clients
+
+==== Client/Server Integration: Three Tiers System
+
+. Test each client type with middle-tier
+. Test server with middle-tier
+. Test each client type with middle-tier and server proxy
+. Test server with middle-tier and client proxy for each client type
+. Test each client type with middle-tier and the actual server
+
+=== Kung et al. Integration Strategy
+
+==== Integration Order Problem
+
+* It is not advised to perform a big-bang integration of classes; integration
+must be down in stepwise manner
+
+
+== 08. System Testing
+
+=== Overview of System Testing
+
+* Performed after the software has been assembled
+* Check if the system satisfies requirements
+* High-order testing criteria should be expressed in the specification in a
+measurable way
+
+* Acceptance Tests
+** System tests carried out by customers or under customers' responsibility
+** Verifies if the system works according to customers' expectations
+
+* Common types of user acceptance tests:
+** Alpha testing - end user testing performed on a system that may have
+incompatible features
+*** Within the development environment
+*** Performed by an in house testing panel including end users
+** Beta testing - an end user testing performed within the user environment
+
+=== System Level Functional (Black-box) Testing
+
+==== Functional Testing
+
+* Ensure the system meets functional requirements
+* Test cases derived from statement of functional requirements:
+** Natural language requirements
+** Use cases
+** Models
+
+==== Test Case Derivations from Use Cases
+
+* For each use case
+. Develop a scenario graph
+. Determine all possible scenarios
+. Analyze and rank scenarios
+. Generate test cases from scenarios to meet coverage goal
+. Execute test cases
+
+image::images/ECSE429LectureNotes-faa80.png[align=center]
+
+==== Scenario Graph
+
+* Generated from a use case
+* A node corresponds to a point where we are waiting for the next event to occur
+* There is a single starting node
+* End of use case is finish node
+* An edge corresponds to a an event occurrence (may include conditions, special
+looping edge)
+* Scenario = path from starting node to a finishing node
+
+== Grey-Box Testing
+
+* Testing strategy based on limited knowledge of system internal
+* Coverage is based on models
+
+=== Testing vs. Formal Verification
+
+==== Testing
+
+* Scope
+** A test case/simulation run analyses one execution trace of the system
+
+* Characteristics
+** Can detect errors
+** Cannot guarantee/prove absence of errors
+
+* Cost
+** Expensive to design
+** Cheap to execute
+
+==== Formal Verification
+
+* Scope
+** Exhaustively analysis all possible execution traces of the system
+
+* Characteristics
+** Can detect errors
+** Can guarantee/prove absence of errors
+
+* Cost
+** Expensive to design
+** Expensive to execute
+
+=== Concrete vs Abstract States
+
+* Concrete
+** Combination of possible values of attributes
+** Can be infinite
+
+* Abstract state
+** Predicates over concrete states
+** One abstract state <- many concrete states
+** Hierarchal status
+
+=== State Machines
+
+image::images/ECSE429LectureNotes-098f3.png[align=center
+
+==== State-based Testing: Overview
+
+image::images/ECSE429LectureNotes-54fc0.png[align=center]
+
+* Objective: check conformance of implementation with design model
+
+==== Equivalent States
+
+* Two states are equivalent if for every input sequence, the output sequences
+from the two states are the same
+
+==== Tests for State-Based models
+
+* State machine execution depends on input events and data
+* Data flow testing methods -> for data dependencies
+* A test consists of a test sequence and test data
+
+==== Challenges for State-based Tests
+
+* Executability problem: find data to execute the test sequence
+* Scalability problem: large number of concrete states
+* Missing state model: need to revers-engineer model
+
+==== Example
+
+image::images/ECSE429LectureNotes-20cda.png[align=center]
+
+=== Fault Model for State Machines
+
+==== Fault Model
+
+image::images/ECSE429LectureNotes-fc070.png[align=center]
+
+* Missing or incorrect transition based on a correct input (*transfer fault*)
+** If transition from 2 to 1 on input _B_ is missing
+** If transition from 1 to 2 (on input _y_) is from 1 to 3 instead
+
+* Missing or incorrect output (action), based on a correct input and transition
+(*output fault*)
+** If transition from 1 to 2 (on input _y_) outputs r instead of u
+
+* Corrupt state: based on a correct input, the implementation computes a state
+that is not valid (additional state)
+** If transition is from 1 to 5 (on input _y_) instead of 2
+
+* Sneak path (extra transition): the implementation accepts a valid input that
+is illegal or unspecified for a state
+** Example state machine is fully specified -> sneak path not possible
+
+* Illegal input failure: the implementation fails to handle an illegal mesage
+correctly (incorrect output, state corrupted)
+
+* Trap door: implementation accepts undefined messages
+** Transition from 1 to 4 on input
+
+=== State-Based Testing Strategies
+
+* All States: Testing passes through all states
+* All Events: all events consumed at least once
+* All Actions: all actions produced at least once
+* All Transitions: All (explicit) transitions taken at least once
+** Implies all states/events/actions
+** All n-transitions sequences: sequences of length n
+
+==== N+ Test Strategy
+
+* Reveals:
+** All state control faults
+** All sneak paths
+** Many corrupt states
+
+* Procedure:
+. Derive round-trip path tree from state model
+. Generate the round-trip path test cases
+. Generate sneak path test cases
+. Sensitize transitions in each test case
+
+==== Round-Trip Path Tree
+
+* Prerequisite
+** Flatten state model (remove concurrency and hierarchy)
+
+* Algorithm
+** Initial state is the root node of the tree
+** An edge is drawn for every transition out of the initial node, with new
+leaf nodes representing resultant states
+** A leaf node is marked as terminal, if the state it represents has already
+been drawn or is a final state
+** No more transition are traced out of a terminal node (only one iteration of
+a loop is allowed
+** Repeat until all leaf nodes are terminal
+
+* Tree structure depends on the order in which transitions are traced (breadth
+first or depth first)
+* Depth first search yields fewer, longer test sequences
+* The order in which sates are investigated is supposed to be irrelevant
+
+* Is used to:
+** Check conformance to explicit behavior model
+** Find sneak paths
+
+==== Conformance Test Cases
+
+* Each test sequence begins at the root node and ends at a leaf node -> each
+path through the round-trip path three produces a test case
+* The expected result (oracle) is the sequence of states and actions (outputs) -
+assuming states can be "observed"
+* Test cases are completed by identifying method parameter values and required
+conditions to traverse a path
+* Run the test cases by setting the object under test to the initial state,
+applying the sequence, and then checking the intermediary states, final state,
+and outputs
+
+==== Sneak Path Test Cases
+
+* Covering all round-trip paths shows conformance to the explicitly modeled
+behavior
+* When state machines are incompletely specified, need to test for sneak paths
+* A sneak path is possible for each unspecified transition and for guarded
+transitions that evaluate false -> show if implicitly excluded behavior is
+correctly handled
+* Need to test all states' illegal events -> guarantees to reveal all sneak paths
+* Place the object in the corresponding state
+* Apply illegal event by sending message or forcing the virtual machine to
+generate the desired event
+* Check the actual response matches the specified response
+* Check that the resultant state is unchanged
+
+==== Hierarchy of State-based Testing Strategies
+
+image::images/ECSE429LectureNotes-54db8.png[align=center]
+
+==== Support for State-Based Testability
+
+* How to compare the actual result state from a test exec. sequence with the
+expected result?
+* Possible approaches:
+** Built-in test support
+** Test Repetition (heuristic to reveal corrupted states when impossible to
+alter code)
+. Run test case saving all output actions
+. Repeat test and compare output with saved output - it is unlikely to get the
+same result starting from a corrupt state
+
+==== Built-In Test Support
+
+* Get state methods: methods that evaluate the state invariants and return boolean
+indicating whether an object is in a specific state
+* During OO analysis and design, state is defined by a state invariant
+* Each state invariant is associated with an executable assertions in the code
+
+* Set state methods: built in methods to set objects in certain states that are
+difficult to reach but are the starting state for a test sequence
+* Only test drivers should be allowed to use these methods
+
+== Exam Review
+
+* 10 conceptual classes
+** IE. Compare A to B
+** Everything covered in lectures
+** Every concept covered in tutorials
+** No technology specific questions
+** No multiple choice/true or false questions
+
+* 7 practical exercises
+** Similar to project deliverables, or assignments, quizzes, lecture slides
+** *Basically everything covered in assignments*
+
+=== LTL
+
+* Use link on mycourses to help study with ltl portion of the exam
+* Here is the automaton, here is the property, see that the property holds
+*
